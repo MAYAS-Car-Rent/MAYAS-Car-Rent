@@ -1,6 +1,7 @@
 using MAYAS_Car_Rent.Data;
 using MAYAS_Car_Rent.Models.Interface;
 using MAYAS_Car_Rent.Models.Service;
+using MAYAS_Car_Rent.Models.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -39,7 +40,9 @@ namespace MAYAS_Car_Rent
                 string connectionString = Configuration.GetConnectionString("DefaultConnection");
                 options.UseSqlServer(connectionString);
             });
-            }
+
+            services.AddTransient<ICustomer, CustomerService>();
+        }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
