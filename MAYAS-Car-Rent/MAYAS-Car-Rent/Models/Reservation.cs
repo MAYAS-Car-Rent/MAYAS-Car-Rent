@@ -24,5 +24,10 @@ namespace MAYAS_Car_Rent.Models
 
         public Customer Customer { get; set; }
 
+        public int CustomerId { get; set; }
+
+        public Car Car { get; set; }
+
+        public int CarId { get; set; }
     }
 }

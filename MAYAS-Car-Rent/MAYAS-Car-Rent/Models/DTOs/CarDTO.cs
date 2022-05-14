@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MAYAS_Car_Rent.Models.DTOs
 {
-    public class CarDTO
+    public class CarDTO    // All DTOs made by Mutaz Altbakhi 
     {
         public int Id { get; set; }
         [Required]

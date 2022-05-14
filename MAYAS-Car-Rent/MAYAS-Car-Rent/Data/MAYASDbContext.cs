@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace MAYAS_Car_Rent.Data
 {
-    public class MAYASDbContext : DbContext
+    public class MAYASDbContext : DbContext  // Made by Mutaz Altbakhi
     {        
         public DbSet<Admin> Admins { get; set; }
 

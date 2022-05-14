@@ -19,14 +19,17 @@ namespace MAYAS_Car_Rent.Models.Service
         }
 
         public async Task<Reservation> CreateReservation(Reservation reservation)
-        {
+        {            
             Reservation Newreservation = new Reservation
             {
                 Id = reservation.Id,
                 PickupDate = reservation.PickupDate,
                 ReturnDate = reservation.ReturnDate,
                 NumberOfDays = reservation.NumberOfDays,
-                Price = reservation.Price
+                Price = reservation.Price,
+                CompanyId = reservation.CompanyId,
+                CustomerId = reservation.CustomerId,
+                CarId = reservation.CarId
             };
             _context.Entry(Newreservation).State = EntityState.Added;
             await _context.SaveChangesAsync();
