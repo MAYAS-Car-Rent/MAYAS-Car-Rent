@@ -8,9 +8,9 @@ namespace MAYAS_Car_Rent.Models.Interface
     {
         Task<Employee> CreateEmployee(Employee employee);
 
-        Task<List<EmployeeDTO>> GetEmployees(int companyId);
+        Task<List<EmployeeDTO>> GetEmployees();
 
-        Task<EmployeeDTO> GetEmployee(int id, int companyId);
+        Task<EmployeeDTO> GetEmployee(int id);
 
         Task<Employee> UpdateEmployee(int id, Employee employee);
 

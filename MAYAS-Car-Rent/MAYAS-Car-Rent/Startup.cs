@@ -33,6 +33,8 @@ namespace MAYAS_Car_Rent
             services.AddControllers();
             services.AddTransient<ICompany, CompanyService>();
             services.AddTransient<ICar, CarService>();
+            services.AddTransient<IEmployee, EmployeeService>();
+
             services.AddControllers()
                     .AddNewtonsoftJson(options => options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
 
