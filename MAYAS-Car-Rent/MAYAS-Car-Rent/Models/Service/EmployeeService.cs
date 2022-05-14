@@ -94,5 +94,12 @@ namespace MAYAS_Car_Rent.Models.Service
             _context.Entry(employee).State = EntityState.Deleted;
             await _context.SaveChangesAsync();
         }
+        public Task<List<Employee>> SearchByName(string term)
+        {
+            var result = _context.Employees.Include(x => x.Name)
+                                        .Where(x => x.Name.Contains(term))
+                                        .ToListAsync();
+            return result;
+        }
     }
 }
