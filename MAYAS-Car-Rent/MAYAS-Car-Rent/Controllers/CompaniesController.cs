@@ -88,9 +88,10 @@ namespace MAYAS_Car_Rent.Controller
             return NoContent();
         }
 
-        //private bool CompanyExists(int id)
+        //[HttpGet("{UserName}")]
+        //public async Task<ActionResult<IEnumerable<Company>>> SearchByName(string name)
         //{
-        //    return _company.Companies.Any(e => e.Id == id);
+        //    return await _company.SearchByName(name);
         //}
 
 
