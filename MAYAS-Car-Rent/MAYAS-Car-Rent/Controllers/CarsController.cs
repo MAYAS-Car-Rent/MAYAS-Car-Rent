@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using MAYAS_Car_Rent.Data;
 using MAYAS_Car_Rent.Models;
 using MAYAS_Car_Rent.Models.Interface;
+using MAYAS_Car_Rent.Models.DTOs;
 
 namespace MAYAS_Car_Rent.Controller
 {
@@ -24,14 +25,14 @@ namespace MAYAS_Car_Rent.Controller
 
         // GET: api/Cars
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Car>>> GetCars()
+        public async Task<ActionResult<IEnumerable<CarDTO>>> GetCars()
         {
             return Ok(await _car.GetCars());
         }
 
         // GET: api/Cars/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Car>> GetCar(int id)
+        public async Task<ActionResult<CarDTO>> GetCar(int id)
         {
             var car = await _car.GetCar(id);
 
