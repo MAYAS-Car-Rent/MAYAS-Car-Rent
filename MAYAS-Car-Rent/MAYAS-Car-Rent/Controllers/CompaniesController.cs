@@ -92,22 +92,25 @@ namespace MAYAS_Car_Rent.Controller
         //{
         //    return _company.Companies.Any(e => e.Id == id);
         //}
+
+
+                                                // Made by Mutaz Altbakhi
         [HttpPost]
-        [Route("{carId}/{companyId}")]
+        [Route("{carId}/Car/{companyId}")]
         public async Task<ActionResult<Company>> AddCarToCompany(int carId , int companyId) 
         {
             await _company.AddCarToCompany(carId, companyId);
             return NoContent();
         }
         [HttpPost]
-        [Route("{employeeId}/{companyId}")]
+        [Route("{employeeId}/Employee/{companyId}")]
         public async Task<ActionResult<Company>> AddEmployeeToCompany(int employeeId, int companyId)
         {
             await _company.AddEmployeeToCompany(employeeId, companyId);
             return NoContent();
         }
         [HttpPost]
-        [Route("{reservationId}/{companyId}")]
+        [Route("{reservationId}/Reservation/{companyId}")]
         public async Task<ActionResult<Company>> AddReservationToCompany(int reservationId, int companyId)
         {
             await _company.AddReservationToCompany(reservationId, companyId);
@@ -115,7 +118,7 @@ namespace MAYAS_Car_Rent.Controller
         }
 
         [HttpDelete]
-        [Route("{carId}/{companyId}")]
+        [Route("{carId}/Car/{companyId}")]
         public async Task<ActionResult<Company>> RemoveCarFromCompany(int carId, int companyId)
         {
             var car = await _car.GetCar(carId);
@@ -129,7 +132,7 @@ namespace MAYAS_Car_Rent.Controller
         }
 
         [HttpDelete]
-        [Route("{employeeId}/{companyId}")]
+        [Route("{employeeId}/Employee/{companyId}")]
         public async Task<ActionResult<Company>> RemoveEmployeeFromCompany(int employeeId, int companyId)
         {
             var employee = await _employee.GetEmployee(employeeId);
@@ -143,7 +146,7 @@ namespace MAYAS_Car_Rent.Controller
         }
 
         [HttpDelete]
-        [Route("{employeeId}/{companyId}")]
+        [Route("{reservationId}/Reservation/{companyId}")]
         public async Task<ActionResult<Company>> RemoveReservationFromCompany(int reservationId, int companyId)
         {
             var reservation = await _reservation.GetReservation(reservationId);
