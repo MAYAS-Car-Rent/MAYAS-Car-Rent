@@ -128,7 +128,7 @@ namespace MAYAS_Car_Rent.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("CompanyId")
+                    b.Property<int?>("CompanyId")
                         .HasColumnType("int");
 
                     b.Property<int?>("CustomerId")
@@ -159,6 +159,48 @@ namespace MAYAS_Car_Rent.Migrations
                     b.HasIndex("CustomerId");
 
                     b.ToTable("Cars");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Color = "Red",
+                            IsRent = false,
+                            Model = "sportage",
+                            Name = "KIA",
+                            PlateNumber = "Jo-12-1234",
+                            Year = 2022
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Color = "Black",
+                            IsRent = false,
+                            Model = "m3",
+                            Name = "BMW",
+                            PlateNumber = "Jo-13-123",
+                            Year = 2022
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Color = "Blue",
+                            IsRent = false,
+                            Model = "corolla",
+                            Name = "Toyota",
+                            PlateNumber = "Jo-14-24685",
+                            Year = 2022
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Color = "White",
+                            IsRent = false,
+                            Model = "G-Class",
+                            Name = "Mercedes",
+                            PlateNumber = "Jo-10-10",
+                            Year = 2022
+                        });
                 });
 
             modelBuilder.Entity("MAYAS_Car_Rent.Models.Company", b =>
@@ -481,9 +523,7 @@ namespace MAYAS_Car_Rent.Migrations
                 {
                     b.HasOne("MAYAS_Car_Rent.Models.Company", "Company")
                         .WithMany("Cars")
-                        .HasForeignKey("CompanyId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("CompanyId");
 
                     b.HasOne("MAYAS_Car_Rent.Models.Customer", null)
                         .WithMany("Cars")
