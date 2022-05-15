@@ -161,5 +161,18 @@ namespace MAYAS_Car_Rent.Controller
             await _company.RemoveReservationFromCompany(reservationId, companyId);
             return NoContent();
         }
+        // GET: api/Cars/search/name
+        [HttpGet("{search}/{name}")]
+        public async Task<ActionResult<CompanyDTO>> GetCarbyname(string name)
+        {
+            var co = await _company.GetCarbyname(name);
+            if (co == null)
+            {
+                return BadRequest($"Your search for {name} did not return any results");
+
+            }
+            return Ok(co);
+
+        }
     }
 }
