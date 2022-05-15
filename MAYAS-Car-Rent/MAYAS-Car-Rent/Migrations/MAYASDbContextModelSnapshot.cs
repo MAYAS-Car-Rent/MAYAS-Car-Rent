@@ -128,7 +128,7 @@ namespace MAYAS_Car_Rent.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("CompanyId")
+                    b.Property<int?>("CompanyId")
                         .HasColumnType("int");
 
                     b.Property<int?>("CustomerId")
@@ -165,7 +165,6 @@ namespace MAYAS_Car_Rent.Migrations
                         {
                             Id = 1,
                             Color = "Red",
-                            CompanyId = 0,
                             IsRent = false,
                             Model = "sportage",
                             Name = "KIA",
@@ -176,7 +175,6 @@ namespace MAYAS_Car_Rent.Migrations
                         {
                             Id = 2,
                             Color = "Black",
-                            CompanyId = 0,
                             IsRent = false,
                             Model = "m3",
                             Name = "BMW",
@@ -187,7 +185,6 @@ namespace MAYAS_Car_Rent.Migrations
                         {
                             Id = 3,
                             Color = "Blue",
-                            CompanyId = 0,
                             IsRent = false,
                             Model = "corolla",
                             Name = "Toyota",
@@ -198,7 +195,6 @@ namespace MAYAS_Car_Rent.Migrations
                         {
                             Id = 4,
                             Color = "White",
-                            CompanyId = 0,
                             IsRent = false,
                             Model = "G-Class",
                             Name = "Mercedes",
@@ -527,9 +523,7 @@ namespace MAYAS_Car_Rent.Migrations
                 {
                     b.HasOne("MAYAS_Car_Rent.Models.Company", "Company")
                         .WithMany("Cars")
-                        .HasForeignKey("CompanyId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("CompanyId");
 
                     b.HasOne("MAYAS_Car_Rent.Models.Customer", null)
                         .WithMany("Cars")
