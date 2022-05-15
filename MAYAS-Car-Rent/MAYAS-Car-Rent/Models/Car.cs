@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MAYAS_Car_Rent.Models
 {
-    public class Car
+    public class Car  // All Models made by Mutaz Altbakhi 
     {
         public int Id { get; set; }
         [Required]
@@ -26,9 +26,7 @@ namespace MAYAS_Car_Rent.Models
 
         public int CompanyId { get; set; }
 
-        public Customer Customer { get; set; }
-        [Required]
-        public int CustomerId { get; set; }
+        public List<Reservation> Reservations { get; set; }   
 
         public enum CarType
         {
