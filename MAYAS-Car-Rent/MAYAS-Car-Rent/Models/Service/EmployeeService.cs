@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace MAYAS_Car_Rent.Models.Service
 {
-    public class EmployeeService : IEmployee
+    public class EmployeeService : IEmployee //Made by AbdUlrahman Jaran
     {
         private MAYASDbContext _context;
 
@@ -21,6 +21,7 @@ namespace MAYAS_Car_Rent.Models.Service
         {
             Employee newEmployee = new Employee()
             {
+                Id = employee.Id,
                 Name = employee.Name,
                 PhoneNumber = employee.PhoneNumber,
                 Email = employee.Email,
@@ -29,39 +30,53 @@ namespace MAYAS_Car_Rent.Models.Service
             };
             _context.Entry(newEmployee).State = EntityState.Added;
             await _context.SaveChangesAsync();
-            return employee;
+            return newEmployee;
         }
 
-        public async Task<List<EmployeeDTO>> GetEmployees(int companyId)
+        public async Task<List<EmployeeDTO>> GetEmployees()
         {
             return await _context.Employees
-                .Where(x => x.CompanyId == companyId)
                 .Select(e => new EmployeeDTO
                 {
+                    Id = e.Id,
                     Name = e.Name,
                     PhoneNumber = e.PhoneNumber,
-                    Email = e.Email
-                }).Include(x => x.Company.UserName)
+                    Email = e.Email,
+                    Company = new CompanyDTO
+                    {
+                        UserName = e.Company.UserName,
+                        PhoneNumber = e.Company.PhoneNumber,
+                        Address = e.Company.Address
+                    }
+                })
                 .ToListAsync();
         }
 
-        public async Task<EmployeeDTO> GetEmployee(int id, int companyId)
+        public async Task<EmployeeDTO> GetEmployee(int id)
         {
             return await _context.Employees
-                .Where(x => x.CompanyId == companyId)
+                .Where(x => x.Id == id)
                 .Select(e => new EmployeeDTO
                 {
+                    Id = e.Id,
                     Name = e.Name,
                     PhoneNumber = e.PhoneNumber,
-                    Email = e.Email
-                }).Include(x => x.Company.UserName)
-                .FirstOrDefaultAsync(x => x.Id == id);
+                    Email = e.Email,
+                    Company = new CompanyDTO
+                    {
+                        UserName = e.Company.UserName,
+                        PhoneNumber = e.Company.PhoneNumber,
+                        Address = e.Company.Address,
+                    }
+                })
+                .FirstOrDefaultAsync();
         }
 
         public async Task<Employee> UpdateEmployee(int id, Employee employee)
         {
             Employee updatedEmployee = new Employee
             {
+                Id = id,
                 Name = employee.Name,
                 PhoneNumber = employee.PhoneNumber,
                 Password = employee.Password,
@@ -78,6 +93,13 @@ namespace MAYAS_Car_Rent.Models.Service
             Employee employee = await _context.Employees.FindAsync(id);
             _context.Entry(employee).State = EntityState.Deleted;
             await _context.SaveChangesAsync();
+        }
+        public Task<List<Employee>> SearchByName(string term)
+        {
+            var result = _context.Employees.Include(x => x.Name)
+                                        .Where(x => x.Name.Contains(term))
+                                        .ToListAsync();
+            return result;
         }
     }
 }

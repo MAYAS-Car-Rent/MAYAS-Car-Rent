@@ -17,10 +17,16 @@ namespace MAYAS_Car_Rent.Controller
     public class CompaniesController : ControllerBase // Made by Mutaz Altbakhi
     {
         private readonly ICompany _company;
+        private readonly ICar _car;
+        private readonly IEmployee _employee;
+        private readonly IReservation _reservation;
 
-        public CompaniesController(ICompany company)
+        public CompaniesController(ICompany company , ICar car , IEmployee employee , IReservation reservation)
         {
             _company = company;
+            _car = car;
+            _employee = employee;
+            _reservation = reservation;
         }
 
         // GET: api/Companies
@@ -82,9 +88,76 @@ namespace MAYAS_Car_Rent.Controller
             return NoContent();
         }
 
-        //private bool CompanyExists(int id)
+        //[HttpGet("{UserName}")]
+        //public async Task<ActionResult<IEnumerable<Company>>> SearchByName(string name)
         //{
-        //    return _company.Companies.Any(e => e.Id == id);
+        //    return await _company.SearchByName(name);
         //}
+
+
+                                                // Made by Mutaz Altbakhi
+        [HttpPost]
+        [Route("{carId}/Car/{companyId}")]
+        public async Task<ActionResult<Company>> AddCarToCompany(int carId , int companyId) 
+        {
+            await _company.AddCarToCompany(carId, companyId);
+            return NoContent();
+        }
+        [HttpPost]
+        [Route("{employeeId}/Employee/{companyId}")]
+        public async Task<ActionResult<Company>> AddEmployeeToCompany(int employeeId, int companyId)
+        {
+            await _company.AddEmployeeToCompany(employeeId, companyId);
+            return NoContent();
+        }
+        [HttpPost]
+        [Route("{reservationId}/Reservation/{companyId}")]
+        public async Task<ActionResult<Company>> AddReservationToCompany(int reservationId, int companyId)
+        {
+            await _company.AddReservationToCompany(reservationId, companyId);
+            return NoContent();
+        }
+
+        [HttpDelete]
+        [Route("{carId}/Car/{companyId}")]
+        public async Task<ActionResult<Company>> RemoveCarFromCompany(int carId, int companyId)
+        {
+            var car = await _car.GetCar(carId);
+            if (car == null)
+            {
+                return NotFound();
+            }
+
+            await _company.RemoveCarFromCompany(carId, companyId);
+            return NoContent();
+        }
+
+        [HttpDelete]
+        [Route("{employeeId}/Employee/{companyId}")]
+        public async Task<ActionResult<Company>> RemoveEmployeeFromCompany(int employeeId, int companyId)
+        {
+            var employee = await _employee.GetEmployee(employeeId);
+            if (employee == null)
+            {
+                return NotFound();
+            }
+
+            await _company.RemoveEmployeeFromCompany(employeeId, companyId);
+            return NoContent();
+        }
+
+        [HttpDelete]
+        [Route("{reservationId}/Reservation/{companyId}")]
+        public async Task<ActionResult<Company>> RemoveReservationFromCompany(int reservationId, int companyId)
+        {
+            var reservation = await _reservation.GetReservation(reservationId);
+            if (reservation == null)
+            {
+                return NotFound();
+            }
+
+            await _company.RemoveReservationFromCompany(reservationId, companyId);
+            return NoContent();
+        }
     }
 }

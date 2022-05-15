@@ -84,5 +84,12 @@ namespace MAYAS_Car_Rent.Models.Service
             await _context.SaveChangesAsync();
             return car;
         }
+        public Task<List<Car>> SearchByName(string term)
+        {
+            var result = _context.Cars.Include(x => x.Name)
+                                        .Where(x => x.Name.Contains(term))
+                                        .ToListAsync();
+            return result;
+        }
     }
 }

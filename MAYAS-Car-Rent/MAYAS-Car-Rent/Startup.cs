@@ -1,9 +1,12 @@
 using MAYAS_Car_Rent.Data;
+using MAYAS_Car_Rent.Models;
 using MAYAS_Car_Rent.Models.Interface;
 using MAYAS_Car_Rent.Models.Service;
+using MAYAS_Car_Rent.Models.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -29,9 +32,20 @@ namespace MAYAS_Car_Rent
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddIdentity<ApplicationUser, IdentityRole>(options =>
+            {
+                options.User.RequireUniqueEmail = true;
+                // There are other options like this
+            })
+            .AddEntityFrameworkStores<MAYASDbContext>();
+
+            services.AddTransient<IUserService, IdentityUserService>();
             services.AddControllers();
             services.AddTransient<ICompany, CompanyService>();
             services.AddTransient<ICar, CarService>();
+            services.AddTransient<IEmployee, EmployeeService>();
+            services.AddTransient<IReservation, ReservationServices>();
+
             services.AddControllers()
                     .AddNewtonsoftJson(options => options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
 
@@ -40,7 +54,9 @@ namespace MAYAS_Car_Rent
                 string connectionString = Configuration.GetConnectionString("DefaultConnection");
                 options.UseSqlServer(connectionString);
             });
-            }
+
+            services.AddTransient<ICustomer, CustomerService>();
+        }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

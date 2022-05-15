@@ -129,8 +129,8 @@ namespace MAYAS_Car_Rent.Models.Service
             return company;
         }
         
-        public async Task AddCarToCompany(int CarId, int CompanyId)
-        {
+        public async Task AddCarToCompany(int CarId, int CompanyId) // To add car to company I need the id of the car and company
+        {                         
             Car car = new Car()
             {
                 Id = CarId,
@@ -168,7 +168,7 @@ namespace MAYAS_Car_Rent.Models.Service
             await _context.SaveChangesAsync();
         }
 
-        public async Task RemoveCarFromCompany(int CarId, int CompanyId)
+        public async Task RemoveCarFromCompany(int CarId, int CompanyId) // To remove car from company I need to get the car from database 
         {
             Car car = await _context.Cars.Where(o => o.Id == CarId && o.CompanyId == CompanyId).FirstOrDefaultAsync();
 
@@ -193,6 +193,13 @@ namespace MAYAS_Car_Rent.Models.Service
             _context.Entry(reservation).State = EntityState.Deleted;
 
             await _context.SaveChangesAsync();
+        }
+        public Task<List<Company>> SearchByName(string term)
+        {
+            var result = _context.Companies.Include(x => x.UserName)
+                                        .Where(x => x.UserName.Contains(term))
+                                        .ToListAsync();
+            return result;
         }
     }
 }
