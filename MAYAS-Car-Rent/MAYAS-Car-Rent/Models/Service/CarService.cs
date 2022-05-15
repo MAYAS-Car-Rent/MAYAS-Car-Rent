@@ -91,7 +91,7 @@ namespace MAYAS_Car_Rent.Models.Service
                                         .ToListAsync();
             return result;
         }
-        public async Task<CarDTO> GetCarbyname(string name)
+        public async Task<List<CarDTO>> GetCarbyname(string name)
         {
             return await _context.Cars.Select(
 
@@ -104,9 +104,10 @@ namespace MAYAS_Car_Rent.Models.Service
                         Model = car1.Model,
                         PlateNumber = car1.PlateNumber
                       }
-              ).FirstOrDefaultAsync(x => x.Name == name);
+              ).Where(x => x.Name.Contains(name))
+               .ToListAsync();
         }
-        public async Task<CarDTO> GetCarbyYear(int year)
+        public async Task<List<CarDTO>> GetCarbyYear(int year)
         {
             return await _context.Cars.Select(
 
@@ -119,9 +120,10 @@ namespace MAYAS_Car_Rent.Models.Service
                           Model = car1.Model,
                           PlateNumber = car1.PlateNumber
                       }
-              ).FirstOrDefaultAsync(x => x.Year == year);
+              ).Where(x => x.Year == year)
+               .ToListAsync();
         }
-        public async Task<CarDTO> GetCarbyColor(string color)
+        public async Task<List<CarDTO>> GetCarbyColor(string color)
         {
             return await _context.Cars.Select(
 
@@ -134,9 +136,10 @@ namespace MAYAS_Car_Rent.Models.Service
                           Model = car1.Model,
                           PlateNumber = car1.PlateNumber
                       }
-              ).FirstOrDefaultAsync(x => x.Color == color);
+              ).Where(x => x.Color.Contains(color))
+               .ToListAsync();
         }
-        public async Task<CarDTO> GetCarbyModel(string model)
+        public async Task<List<CarDTO>> GetCarbyModel(string model)
         {
             return await _context.Cars.Select(
 
@@ -149,7 +152,8 @@ namespace MAYAS_Car_Rent.Models.Service
                           Model = car1.Model,
                           PlateNumber = car1.PlateNumber
                       }
-              ).FirstOrDefaultAsync(x => x.Model == model);
+              ).Where(x => x.Model.Contains(model))
+               .ToListAsync();
         }
     }
 }

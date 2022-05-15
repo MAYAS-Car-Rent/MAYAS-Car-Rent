@@ -39,12 +39,12 @@ namespace MAYAS_Car_Rent.Data
               new Company { Id = 4, UserName = "Abdalrahman Rental", Email = "AbdalrahmanRental@Gmail.com", Password = "Abdalrahman123", Address = "Amman", PhoneNumber = "962791234567", CommercialRegistrationNumber = 123456789 }
               );
 
-            modelBuilder.Entity<Car>().HasData(
-            new Car { Id = 1, Name = "KIA", Color = "Red", Year = 2022 , Model = "sportage", PlateNumber = "Jo-12-1234" },
-            new Car { Id = 2, Name = "BMW", Color = "Black", Year = 2022, Model = "m3", PlateNumber = "Jo-13-123" },
-            new Car { Id = 3, Name = "Toyota", Color = "Blue", Year = 2022, Model = "corolla", PlateNumber = "Jo-14-24685" },
-            new Car { Id = 4, Name = "Mercedes", Color = "White", Year = 2022, Model = "G-Class", PlateNumber = "Jo-10-10" }
-              );
+            //modelBuilder.Entity<Car>().HasData(
+            //new Car { Id = 1, Name = "KIA", Color = "Red", Year = 2022 , Model = "sportage", PlateNumber = "Jo-12-1234" },
+            //new Car { Id = 2, Name = "BMW", Color = "Black", Year = 2022, Model = "m3", PlateNumber = "Jo-13-123" },
+            //new Car { Id = 3, Name = "Toyota", Color = "Blue", Year = 2022, Model = "corolla", PlateNumber = "Jo-14-24685" },
+            //new Car { Id = 4, Name = "Mercedes", Color = "White", Year = 2022, Model = "G-Class", PlateNumber = "Jo-10-10" }
+            //  );
            
 
             modelBuilder.Entity<Admin>().HasData(

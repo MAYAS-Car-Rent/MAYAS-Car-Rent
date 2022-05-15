@@ -70,6 +70,64 @@ namespace MAYAS_Car_Rent.Controller
             return NoContent();
         }
 
+        // GET: api/Cars/search/name
+        [HttpGet("{search}/{name}")]
+        public async Task<ActionResult<CarDTO>> GetCarbyname(string name)
+        {
+            var car = await _car.GetCarbyname(name);
+            if (car == null)
+            {
+                return BadRequest($"Your search for {name} did not return any results");
+                
+            }
+            return Ok(car);
+
+        }
+        
+        // GET: api/Cars/search/year
+        [HttpGet("{search}/{year}")]
+        public async Task<ActionResult<CarDTO>> GetCarbyYear(int year)
+        {
+            var car = await _car.GetCarbyYear(year);
+            if (car == null)
+            {
+                return BadRequest($"Your search for {year} did not return any results");
+
+            }
+            return Ok(car);
+
+        }
+
+        // GET: api/Cars/search/color
+        [HttpGet("{search}/{color}")]
+        public async Task<ActionResult<CarDTO>> GetCarbyColor(string color)
+        {
+            var car = await _car.GetCarbyColor(color);
+            if (car == null)
+            {
+                return BadRequest($"Your search for {color} did not return any results");
+
+            }
+            return Ok(car);
+
+        }
+
+
+        // GET: api/Cars/search/model
+        [HttpGet("{search}/{model}")]
+        public async Task<ActionResult<CarDTO>> GetCarbyModel(string model)
+        {
+            var car = await _car.GetCarbyModel(model);
+            if (car == null)
+            {
+                return BadRequest($"Your search for {model} did not return any results");
+
+            }
+            return Ok(car);
+
+        }
+
+
 
     }
 }

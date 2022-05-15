@@ -201,5 +201,17 @@ namespace MAYAS_Car_Rent.Models.Service
                                         .ToListAsync();
             return result;
         }
+        public async Task<CompanyDTO> GetCarbyname(string name)
+        {
+            return await _context.Companies.Select(
+
+                      co => new CompanyDTO
+                      {
+                          Id = co.Id,
+                          UserName = co.UserName
+
+                      }
+              ).FirstOrDefaultAsync(x => x.UserName == name);
+        }
     }
 }
