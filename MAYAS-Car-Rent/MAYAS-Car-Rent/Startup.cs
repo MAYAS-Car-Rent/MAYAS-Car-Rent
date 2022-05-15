@@ -11,6 +11,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.OpenApi.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -38,6 +39,16 @@ namespace MAYAS_Car_Rent
                 // There are other options like this
             })
             .AddEntityFrameworkStores<MAYASDbContext>();
+
+            services.AddSwaggerGen(options =>
+            {
+                // Make sure get the "using Statement"
+                options.SwaggerDoc("v1", new OpenApiInfo()
+                {
+                    Title = "MAYAS Car Rent",
+                    Version = "v1",
+                });
+            });
 
             services.AddTransient<IUserService, IdentityUserService>();
             services.AddControllers();
@@ -71,10 +82,19 @@ namespace MAYAS_Car_Rent
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
-                endpoints.MapGet("/", async context =>
+                endpoints.MapGet("/home", async context =>
                 {
                     await context.Response.WriteAsync("Hello World!");
                 });
+            });
+
+            app.UseSwagger(options => {
+                options.RouteTemplate = "/api/{documentName}/swagger.json";
+            });
+
+            app.UseSwaggerUI(options => {
+                options.SwaggerEndpoint("/api/v1/swagger.json", "MAYAS Car Rent");
+                options.RoutePrefix = "";
             });
         }
     }
