@@ -107,6 +107,7 @@ namespace MAYAS_Car_Rent.Models.Service
                 {
                     Id = employee.Id,
                     Name = employee.Name,
+                    Email = employee.Email,
                     PhoneNumber = employee.PhoneNumber
                 }).ToList()
             }).FirstOrDefaultAsync(x => x.Id == Id);
@@ -194,11 +195,17 @@ namespace MAYAS_Car_Rent.Models.Service
 
             await _context.SaveChangesAsync();
         }
-        public Task<List<Company>> SearchByName(string term)
+
+        public Task<List<CompanyDTO>> SearchByName(string term)
         {
-            var result = _context.Companies.Include(x => x.UserName)
-                                        .Where(x => x.UserName.Contains(term))
-                                        .ToListAsync();
+            var result = _context.Companies
+                .Where(x => x.UserName.Contains(term))
+                .Select(C => new CompanyDTO
+                {
+                    UserName = C.UserName,
+                    Address = C.Address,
+                    PhoneNumber = C.PhoneNumber,
+                }).ToListAsync();
             return result;
         }
         public async Task<CompanyDTO> GetCarbyname(string name)

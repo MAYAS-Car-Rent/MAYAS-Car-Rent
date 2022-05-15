@@ -15,5 +15,7 @@ namespace MAYAS_Car_Rent.Models.Interface
         Task<Employee> UpdateEmployee(int id, Employee employee);
 
         Task DeleteEmployee(int id);
+
+        Task<List<EmployeeDTO>> SearchByName(string term);
     }
 }

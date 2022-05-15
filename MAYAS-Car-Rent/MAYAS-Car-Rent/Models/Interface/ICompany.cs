@@ -29,8 +29,11 @@ namespace MAYAS_Car_Rent.Models.Interface
         Task RemoveReservationFromCompany(int ReservationId, int CompanyId);
 
         Task RemoveEmployeeFromCompany(int EmployeeId, int CompanyId);
+
         Task <List<Company>> SearchByName(string name);
         Task<CompanyDTO> GetCarbyname(string name);
+
+        Task <List<CompanyDTO>> SearchByName(string name);
 
 
 

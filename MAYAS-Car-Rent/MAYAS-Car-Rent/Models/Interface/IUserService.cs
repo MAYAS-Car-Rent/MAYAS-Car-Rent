@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace MAYAS_Car_Rent.Models.Interface
 {
-    interface IUserService
+    public interface IUserService
     {
         public Task<UserDTO> Register(RegisterUserDTO data, ModelStateDictionary modelState);
         public Task<UserDTO> Authenticate(string username, string password);
