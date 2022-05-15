@@ -19,21 +19,25 @@ namespace MAYASCarRentTest
 
             var repository = new CompanyService(_db);
             //var Repository = new CarService(_db);
+            var savedCompanies = await repository.GetCompanies();
 
-            // Act
-            await repository.AddCarToCompany(car.Id,company.Id);
+            Assert.Equal(5, savedCompanies.Count);
+            Assert.Equal("Sultan Rental", savedCompanies[0].UserName);
 
-            // Assert
-            var actualCar = await repository.GetCompany(company.Id);
+            //// Act
+            //await repository.AddCarToCompany(car.Id,company.Id);
 
-            Assert.Contains(actualCar.Cars, e => e.Id == car.Id);
+            //// Assert
+            //var actualCar = await repository.GetCompany(company.Id);
 
-            await repository.RemoveCarFromCompany(car.Id, company.Id);
+            //Assert.Contains(actualCar.Cars, e => e.Id == car.Id);
 
-            // Assert
-            actualCar = await repository.GetCompany(car.Id);
+            //await repository.RemoveCarFromCompany(car.Id, company.Id);
 
-            Assert.DoesNotContain(actualCar.Cars, a => a.Id == car.Id);
+            //// Assert
+            //actualCar = await repository.GetCompany(car.Id);
+
+            //Assert.DoesNotContain(actualCar., a => a.Id == car.Id);
 
 
         }

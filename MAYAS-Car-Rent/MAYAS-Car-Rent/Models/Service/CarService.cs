@@ -91,5 +91,65 @@ namespace MAYAS_Car_Rent.Models.Service
                                         .ToListAsync();
             return result;
         }
+        public async Task<CarDTO> GetCarbyname(string name)
+        {
+            return await _context.Cars.Select(
+
+                      car1 => new CarDTO
+                     { 
+                        Id = car1.Id,
+                        Name = car1.Name,
+                        Color = car1.Color,
+                        Year = car1.Year,
+                        Model = car1.Model,
+                        PlateNumber = car1.PlateNumber
+                      }
+              ).FirstOrDefaultAsync(x => x.Name == name);
+        }
+        public async Task<CarDTO> GetCarbyYear(int year)
+        {
+            return await _context.Cars.Select(
+
+                      car1 => new CarDTO
+                      {
+                          Id = car1.Id,
+                          Name = car1.Name,
+                          Color = car1.Color,
+                          Year = car1.Year,
+                          Model = car1.Model,
+                          PlateNumber = car1.PlateNumber
+                      }
+              ).FirstOrDefaultAsync(x => x.Year == year);
+        }
+        public async Task<CarDTO> GetCarbyColor(string color)
+        {
+            return await _context.Cars.Select(
+
+                      car1 => new CarDTO
+                      {
+                          Id = car1.Id,
+                          Name = car1.Name,
+                          Color = car1.Color,
+                          Year = car1.Year,
+                          Model = car1.Model,
+                          PlateNumber = car1.PlateNumber
+                      }
+              ).FirstOrDefaultAsync(x => x.Color == color);
+        }
+        public async Task<CarDTO> GetCarbyModel(string model)
+        {
+            return await _context.Cars.Select(
+
+                      car1 => new CarDTO
+                      {
+                          Id = car1.Id,
+                          Name = car1.Name,
+                          Color = car1.Color,
+                          Year = car1.Year,
+                          Model = car1.Model,
+                          PlateNumber = car1.PlateNumber
+                      }
+              ).FirstOrDefaultAsync(x => x.Model == model);
+        }
     }
 }
