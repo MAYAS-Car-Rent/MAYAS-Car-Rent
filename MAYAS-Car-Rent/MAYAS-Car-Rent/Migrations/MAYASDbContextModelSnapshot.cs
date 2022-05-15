@@ -131,7 +131,7 @@ namespace MAYAS_Car_Rent.Migrations
                     b.Property<int>("CompanyId")
                         .HasColumnType("int");
 
-                    b.Property<int>("CustomerId")
+                    b.Property<int?>("CustomerId")
                         .HasColumnType("int");
 
                     b.Property<bool>("IsRent")
@@ -159,6 +159,52 @@ namespace MAYAS_Car_Rent.Migrations
                     b.HasIndex("CustomerId");
 
                     b.ToTable("Cars");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Color = "Red",
+                            CompanyId = 0,
+                            IsRent = false,
+                            Model = "sportage",
+                            Name = "KIA",
+                            PlateNumber = "Jo-12-1234",
+                            Year = 2022
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Color = "Black",
+                            CompanyId = 0,
+                            IsRent = false,
+                            Model = "m3",
+                            Name = "BMW",
+                            PlateNumber = "Jo-13-123",
+                            Year = 2022
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Color = "Blue",
+                            CompanyId = 0,
+                            IsRent = false,
+                            Model = "corolla",
+                            Name = "Toyota",
+                            PlateNumber = "Jo-14-24685",
+                            Year = 2022
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Color = "White",
+                            CompanyId = 0,
+                            IsRent = false,
+                            Model = "G-Class",
+                            Name = "Mercedes",
+                            PlateNumber = "Jo-10-10",
+                            Year = 2022
+                        });
                 });
 
             modelBuilder.Entity("MAYAS_Car_Rent.Models.Company", b =>
@@ -314,10 +360,13 @@ namespace MAYAS_Car_Rent.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<int>("CarId")
+                        .HasColumnType("int");
+
                     b.Property<int>("CompanyId")
                         .HasColumnType("int");
 
-                    b.Property<int?>("CustomerId")
+                    b.Property<int>("CustomerId")
                         .HasColumnType("int");
 
                     b.Property<int>("NumberOfDays")
@@ -333,6 +382,8 @@ namespace MAYAS_Car_Rent.Migrations
                         .HasColumnType("datetime2");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("CarId");
 
                     b.HasIndex("CompanyId");
 
@@ -480,15 +531,11 @@ namespace MAYAS_Car_Rent.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("MAYAS_Car_Rent.Models.Customer", "Customer")
+                    b.HasOne("MAYAS_Car_Rent.Models.Customer", null)
                         .WithMany("Cars")
-                        .HasForeignKey("CustomerId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("CustomerId");
 
                     b.Navigation("Company");
-
-                    b.Navigation("Customer");
                 });
 
             modelBuilder.Entity("MAYAS_Car_Rent.Models.Employee", b =>
@@ -504,6 +551,12 @@ namespace MAYAS_Car_Rent.Migrations
 
             modelBuilder.Entity("MAYAS_Car_Rent.Models.Reservation", b =>
                 {
+                    b.HasOne("MAYAS_Car_Rent.Models.Car", "Car")
+                        .WithMany("Reservations")
+                        .HasForeignKey("CarId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("MAYAS_Car_Rent.Models.Company", "Company")
                         .WithMany("Reservations")
                         .HasForeignKey("CompanyId")
@@ -512,7 +565,11 @@ namespace MAYAS_Car_Rent.Migrations
 
                     b.HasOne("MAYAS_Car_Rent.Models.Customer", "Customer")
                         .WithMany("Reservations")
-                        .HasForeignKey("CustomerId");
+                        .HasForeignKey("CustomerId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Car");
 
                     b.Navigation("Company");
 
@@ -568,6 +625,11 @@ namespace MAYAS_Car_Rent.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("MAYAS_Car_Rent.Models.Car", b =>
+                {
+                    b.Navigation("Reservations");
                 });
 
             modelBuilder.Entity("MAYAS_Car_Rent.Models.Company", b =>
