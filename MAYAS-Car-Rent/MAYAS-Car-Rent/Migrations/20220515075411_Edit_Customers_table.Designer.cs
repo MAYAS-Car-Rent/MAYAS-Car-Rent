@@ -4,14 +4,16 @@ using MAYAS_Car_Rent.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace MAYAS_Car_Rent.Migrations
 {
     [DbContext(typeof(MAYASDbContext))]
-    partial class MAYASDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220515075411_Edit_Customers_table")]
+    partial class Edit_Customers_table
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
