@@ -88,14 +88,16 @@ namespace MAYAS_Car_Rent.Controller
             return NoContent();
         }
 
-        //[HttpGet("{UserName}")]
-        //public async Task<ActionResult<IEnumerable<Company>>> SearchByName(string name)
-        //{
-        //    return await _company.SearchByName(name);
-        //}
+        // GET: api/Companies/search/term
+        [HttpGet("{search}/{term}")]
+        public async Task<ActionResult<CompanyDTO>> GetCompanyByName(string term)
+        {
+            var company = await _company.SearchByName(term);
+            return Ok(company);
+        }
 
 
-                                                // Made by Mutaz Altbakhi
+        // Made by Mutaz Altbakhi
         [HttpPost]
         [Route("{carId}/Car/{companyId}")]
         public async Task<ActionResult<Company>> AddCarToCompany(int carId , int companyId) 

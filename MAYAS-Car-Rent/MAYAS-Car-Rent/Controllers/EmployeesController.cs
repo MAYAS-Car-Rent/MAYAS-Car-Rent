@@ -70,5 +70,12 @@ namespace MAYAS_Car_Rent.Controller
             return NoContent();
         }
 
+        // GET: api/Employees/search/term
+        [HttpGet("{search}/{term}")]
+        public async Task<ActionResult<EmployeeDTO>> GetEmployeeByName(string term)
+        {
+            var employee = await _employee.SearchByName(term);
+            return Ok(employee);
+        }
     }
 }
