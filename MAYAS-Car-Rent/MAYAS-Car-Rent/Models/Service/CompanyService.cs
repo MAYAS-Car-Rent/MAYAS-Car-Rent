@@ -196,29 +196,21 @@ namespace MAYAS_Car_Rent.Models.Service
             await _context.SaveChangesAsync();
         }
 
-        public Task<List<CompanyDTO>> SearchByName(string term)
+        public async Task<List<CompanyDTO>> SearchByName(string term)
         {
-            var result = _context.Companies
-                .Where(x => x.UserName.Contains(term))
-                .Select(C => new CompanyDTO
-                {
-                    UserName = C.UserName,
-                    Address = C.Address,
-                    PhoneNumber = C.PhoneNumber,
-                }).ToListAsync();
-            return result;
-        }
-        public async Task<CompanyDTO> GetCarbyname(string name)
-        {
-            return await _context.Companies.Select(
+            var result = _context.Companies.Select(C => new CompanyDTO
+            {
+                UserName = C.UserName,
+                Address = C.Address,
+                PhoneNumber = C.PhoneNumber,
+            })
+                .Where(x => x.UserName.Contains(term));
+            
+           var  c = await result.Select(m => new CompanyDTO { 
+               UserName = m.UserName,
+           }).AsNoTracking().ToListAsync();
 
-                      co => new CompanyDTO
-                      {
-                          Id = co.Id,
-                          UserName = co.UserName
-
-                      }
-              ).FirstOrDefaultAsync(x => x.UserName == name);
-        }
+            return c;
+        }                
     }
 }

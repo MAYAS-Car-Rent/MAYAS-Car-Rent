@@ -84,76 +84,41 @@ namespace MAYAS_Car_Rent.Models.Service
             await _context.SaveChangesAsync();
             return car;
         }
-        public Task<List<Car>> SearchByName(string term)
+                
+        public async Task<List<CarDTO>> FilterOnCar(string name , int year, string color , string model)
         {
-            var result = _context.Cars.Include(x => x.Name)
-                                        .Where(x => x.Name.Contains(term))
-                                        .ToListAsync();
+           var result = await _context.Cars.Select(
+
+                      car1 => new CarDTO
+                      {
+                          Name = car1.Name.ToLower(),
+                          Color = car1.Color.ToLower(),
+                          Year = car1.Year,
+                          Model = car1.Model.ToLower(),
+                          PlateNumber = car1.PlateNumber
+                      }
+              )
+              .AsNoTracking()
+               .ToListAsync();
+            if (name != null)
+            {
+                result = result.Where(y => y.Name.Contains(name)).ToList();
+            }
+            if (year > 0) 
+            {
+                result = result.Where(y => y.Year.Equals(year)).ToList();
+            }
+            if (color != null)
+            {
+                result = result.Where(y => y.Color.Contains(color)).ToList();
+            }
+            if (model != null)
+            {
+                result = result.Where(y => y.Model.Contains(model)).ToList();
+            }
+
             return result;
         }
-        public async Task<List<CarDTO>> GetCarbyname(string name)
-        {
-            return await _context.Cars.Select(
 
-                      car1 => new CarDTO
-                     { 
-                        Id = car1.Id,
-                        Name = car1.Name,
-                        Color = car1.Color,
-                        Year = car1.Year,
-                        Model = car1.Model,
-                        PlateNumber = car1.PlateNumber
-                      }
-              ).Where(x => x.Name.Contains(name))
-               .ToListAsync();
-        }
-        public async Task<List<CarDTO>> GetCarbyYear(int year)
-        {
-            return await _context.Cars.Select(
-
-                      car1 => new CarDTO
-                      {
-                          Id = car1.Id,
-                          Name = car1.Name,
-                          Color = car1.Color,
-                          Year = car1.Year,
-                          Model = car1.Model,
-                          PlateNumber = car1.PlateNumber
-                      }
-              ).Where(x => x.Year == year)
-               .ToListAsync();
-        }
-        public async Task<List<CarDTO>> GetCarbyColor(string color)
-        {
-            return await _context.Cars.Select(
-
-                      car1 => new CarDTO
-                      {
-                          Id = car1.Id,
-                          Name = car1.Name,
-                          Color = car1.Color,
-                          Year = car1.Year,
-                          Model = car1.Model,
-                          PlateNumber = car1.PlateNumber
-                      }
-              ).Where(x => x.Color.Contains(color))
-               .ToListAsync();
-        }
-        public async Task<List<CarDTO>> GetCarbyModel(string model)
-        {
-            return await _context.Cars.Select(
-
-                      car1 => new CarDTO
-                      {
-                          Id = car1.Id,
-                          Name = car1.Name,
-                          Color = car1.Color,
-                          Year = car1.Year,
-                          Model = car1.Model,
-                          PlateNumber = car1.PlateNumber
-                      }
-              ).Where(x => x.Model.Contains(model))
-               .ToListAsync();
-        }
     }
 }

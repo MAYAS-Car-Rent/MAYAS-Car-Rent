@@ -17,10 +17,8 @@ namespace MAYAS_Car_Rent.Models.Interface
         Task<Car> UpdateCar(int Id, Car car);
 
         Task DeleteCar(int Id);
-        Task<List<CarDTO>> GetCarbyname(string name);
-        Task<List<CarDTO>> GetCarbyYear(int year);
-        Task<List<CarDTO>> GetCarbyColor(string color);
-        Task<List<CarDTO>> GetCarbyModel(string model);
+
+        Task<List<CarDTO>> FilterOnCar(string name, int year, string color, string model);
 
 
     }

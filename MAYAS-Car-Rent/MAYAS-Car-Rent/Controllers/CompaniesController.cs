@@ -86,16 +86,7 @@ namespace MAYAS_Car_Rent.Controller
 
             await _company.DeleteCompany(id);
             return NoContent();
-        }
-
-        // GET: api/Companies/search/term
-        [HttpGet("{search}/{term}")]
-        public async Task<ActionResult<CompanyDTO>> GetCompanyByName(string term)
-        {
-            var company = await _company.SearchByName(term);
-            return Ok(company);
-        }
-
+        }        
 
         // Made by Mutaz Altbakhi
         [HttpPost]
@@ -161,11 +152,11 @@ namespace MAYAS_Car_Rent.Controller
             await _company.RemoveReservationFromCompany(reservationId, companyId);
             return NoContent();
         }
-        // GET: api/Cars/search/name
-        [HttpGet("{search}/{name}")]
+        // GET: api/Cars/name/{search}
+        [HttpGet("name/{search}")]
         public async Task<ActionResult<CompanyDTO>> GetCarbyname(string name)
         {
-            var co = await _company.GetCarbyname(name);
+            var co = await _company.SearchByName(name);
             if (co == null)
             {
                 return BadRequest($"Your search for {name} did not return any results");
