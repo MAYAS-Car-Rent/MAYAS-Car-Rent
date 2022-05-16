@@ -70,7 +70,7 @@ namespace MAYAS_Car_Rent.Controller
             return NoContent();
         }      
 
-        // GET: api/Cars/search/model
+        // GET: api/Cars/filter             Made by Mutaz Altbakhi
         [HttpGet("filter")]
         public async Task<ActionResult<CarDTO>> FilterOnCar(string name, int year, string color, string model)
         {
