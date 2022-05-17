@@ -125,7 +125,7 @@ namespace MAYASCarRentTest
 
 
             // Assert
-            Assert.Equal(5, result.Count);
+            Assert.Equal(3, result.Count);
         }
         [Fact]
         public async Task CanDeleteAnEmployee()
@@ -163,43 +163,44 @@ namespace MAYASCarRentTest
             var repository = BuildRepository();
 
             employee1 = await repository.CreateEmployee(employee1);
-            employee2 = await repository.CreateEmployee(employee1);
-            employee3 = await repository.CreateEmployee(employee1);
+            employee2 = await repository.CreateEmployee(employee2);
+            employee3 = await repository.CreateEmployee(employee3);
 
 
             // Act
             List<EmployeeDTO> resultBefore = await repository.GetEmployees();
-            await repository.DeleteEmployee(2);
+            await repository.DeleteEmployee(4);
             List<EmployeeDTO> resultAfter = await repository.GetEmployees();
 
             // Assert
-            Assert.Equal(4, resultAfter.Count);
+            Assert.Equal(2, resultAfter.Count);
         }
         [Fact]
         public async Task CanUpdateEmployee()
         {
             // Arrange
-
             var employee = new Employee
             {
                 Id = 3,
-                CompanyId = 2,
-                Name = "Sana'a Shlool",
+                CompanyId = 1,
+                Name = "Ola Shlool",
                 Email = "olashlool@gmail.com",
                 Password = "2052022",
                 PhoneNumber = "+962 785344281"
             };
-
+            var employeeUpdated = new Employee
+            {
+                Id = 3,
+                Name = "Noora Abo ALhaija",
+            };
             var repository = BuildRepository();
-
+            employee = await repository.CreateEmployee(employee);
             // Act
-
             await repository.UpdateEmployee(employee.Id, employee);
-
             EmployeeDTO result = await repository.GetEmployee(3);
-
-            // Assert
-            Assert.Equal("Sana'a Shlool", result.Name);
+            // assert
+            Assert.Equal("Noora Abo ALhaija", result.Name);
+            Assert.NotEqual("Ola Shlool", result.Name);
         }
     }
 }

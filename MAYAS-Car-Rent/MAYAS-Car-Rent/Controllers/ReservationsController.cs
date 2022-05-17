@@ -55,6 +55,11 @@ namespace MAYAS_Car_Rent.Controller
         public async Task<ActionResult<Reservation>> PostReservation(Reservation reservation)
         {
             var newReservation = await _reservation.CreateReservation(reservation);
+            if(newReservation.Equals(true))
+            {
+                return BadRequest("The car is rent in this interval");
+            }
+            else 
             return Ok(newReservation);
         }
         // DELETE: api/Reservations/5

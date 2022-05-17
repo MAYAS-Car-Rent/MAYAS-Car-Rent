@@ -31,6 +31,7 @@ namespace MAYASCarRentTest
             _db?.Dispose();
             _connection?.Dispose();
         }
+
         protected async Task<Car> CreateAndSaveTestCar()
         {
             var car = new Car { Id = 200, Name = "test", Color = "Red", Year = 2000, Model = "test", PlateNumber = "Jo-13-1434" };
@@ -47,5 +48,6 @@ namespace MAYASCarRentTest
             Assert.NotEqual(0, company.Id);
             return company;
         }
+
     }
 }
