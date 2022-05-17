@@ -31,6 +31,23 @@ namespace MAYASCarRentTest
             _db?.Dispose();
             _connection?.Dispose();
         }
-      
+
+        protected async Task<Car> CreateAndSaveTestCar()
+        {
+            var car = new Car { Id = 200, Name = "test", Color = "Red", Year = 2000, Model = "test", PlateNumber = "Jo-13-1434" };
+            _db.Cars.Add(car);
+            await _db.SaveChangesAsync();
+            Assert.NotEqual(0, car.Id);
+            return car;
+        }
+        protected async Task<Company> CreateAndSaveTestCompany()
+        {
+            var company = new Company { Id = 55, UserName = "Sultan Rental", Email = "SultanRental@Gmail.com", Password = "Sultan123", Address = "Amman", PhoneNumber = "962791234567", CommercialRegistrationNumber = 123456789 };
+            _db.Companies.Add(company);
+            await _db.SaveChangesAsync();
+            Assert.NotEqual(0, company.Id);
+            return company;
+        }
+
     }
-    }
+}
