@@ -32,10 +32,9 @@ namespace MAYAS_Car_Rent.Models.Services
                 PhoneNumber = customer.PhoneNumber,
                 NationalNumber = customer.NationalNumber,
                 Address = customer.Address,
-
-
+                Password = customer.Password
             };
-            _context.Entry(customer).State = EntityState.Added;
+            _context.Entry(newcustomer).State = EntityState.Added;
             await _context.SaveChangesAsync();
             return customer;
         }
@@ -44,40 +43,14 @@ namespace MAYAS_Car_Rent.Models.Services
         {
             return await _context.customers
                 .Select(cus => new CustomerDTO
-
-
-                {
-                    Id = cus.Id,
+                {                    
                     UserName = cus.UserName,
                     Email = cus.Email,
                     Gender = cus.Gender,
                     PhoneNumber = cus.PhoneNumber,
                     NationalNumber = cus.NationalNumber,
-                    Address = cus.Address,
-
-                    Cars = cus.Cars.
-                Select(car => new CarDTO
-                {
-                    Id = car.Id,
-                    Name = car.Name,
-                    Color = car.Color,
-                    Year = car.Year,
-                    Model = car.Model,
-                    PlateNumber = car.PlateNumber                    
-                }).ToList(),
-
-                    Reservations = cus.Reservations
-                .Select(reservation => new ReservationDTO
-                {
-                    Id = reservation.Id,
-                    PickupDate = reservation.PickupDate,
-                    ReturnDate = reservation.ReturnDate,
-                    NumberOfDays = reservation.NumberOfDays,
-                    Price = reservation.Price
-                }).ToList(),
+                    Address = cus.Address,                    
                 }).FirstOrDefaultAsync(x => x.Id == id);
-
-
         }
 
         public async Task Delete(int id)
@@ -95,8 +68,6 @@ namespace MAYAS_Car_Rent.Models.Services
         {
             return await _context.customers
                 .Select(cus => new CustomerDTO
-
-
                 {
                     Id = cus.Id,
                     UserName = cus.UserName,
@@ -105,35 +76,11 @@ namespace MAYAS_Car_Rent.Models.Services
                     PhoneNumber = cus.PhoneNumber,
                     NationalNumber = cus.NationalNumber,
                     Address = cus.Address,
-
-                    Cars = cus.Cars
-                .Select(car => new CarDTO
-                {
-                    Id = car.Id,
-                    Name = car.Name,
-                    Color = car.Color,
-                    Year = car.Year,
-                    Model = car.Model,
-                    PlateNumber = car.PlateNumber             
-                }).ToList(),
-
-
-                    Reservations = cus.Reservations
-                .Select(reservation => new ReservationDTO
-                {
-                    Id = reservation.Id,
-                    PickupDate = reservation.PickupDate,
-                    ReturnDate = reservation.ReturnDate,
-                    NumberOfDays = reservation.NumberOfDays,
-                    Price = reservation.Price
-                }).ToList(),
-                }).ToListAsync();
+                 }).ToListAsync();
         }
-
 
         public async Task<Customer> UpdateCustomer(int id, Customer customer)
         {
-
             Customer UpdateCustomer = new Customer
             {
                 Id = customer.Id,

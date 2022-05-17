@@ -11,6 +11,8 @@ namespace MAYAS_Car_Rent.Models.DTOs
         public int Id { get; set; }
         [Required]
         public string Name { get; set; }
+
+        public string ImageUrl { get; set; }
         [Required]
         public string Color { get; set; }
         [Required]
@@ -19,6 +21,8 @@ namespace MAYAS_Car_Rent.Models.DTOs
         public string Model { get; set; }
         [Required]
         public string PlateNumber { get; set; }
+        [Required]
+        public double PricePerDay { get; set; }
 
         public CompanyDTO Company { get; set; }
 

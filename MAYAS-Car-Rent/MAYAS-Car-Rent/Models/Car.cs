@@ -12,6 +12,8 @@ namespace MAYAS_Car_Rent.Models
         public int Id { get; set; }
         [Required]
         public string Name { get; set; }
+
+        public string ImageUrl { get; set; }
         [Required]
         public string Color { get; set; }
         [Required]
@@ -20,12 +22,13 @@ namespace MAYAS_Car_Rent.Models
         public string Model { get; set; }
         [Required]
         public string PlateNumber { get; set; }
-
-        public bool IsRent { get; set; }
+        [Required]
+        public double PricePerDay { get; set; }
 
         public int? CompanyId { get; set; }
         [ForeignKey("CompanyId")]
         public Company Company { get; set; }
+
         public List<Reservation> Reservations { get; set; }   
 
         public enum CarType

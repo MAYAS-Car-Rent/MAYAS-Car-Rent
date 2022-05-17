@@ -28,7 +28,10 @@ namespace MAYAS_Car_Rent.Models.Service
                 UserName = company.UserName,
                 Address = company.Address,
                 PhoneNumber = company.PhoneNumber,
-                CommercialRegistrationNumber = company.CommercialRegistrationNumber
+                CommercialRegistrationNumber = company.CommercialRegistrationNumber,
+                Rate = 0 ,
+                ProfilePicture = company.ProfilePicture,
+                RateCount = 0
             };
             _context.Entry(NewCompany).State = EntityState.Added;
             await _context.SaveChangesAsync();
@@ -51,6 +54,8 @@ namespace MAYAS_Car_Rent.Models.Service
                 UserName = C.UserName,
                 Address = C.Address,
                 PhoneNumber = C.PhoneNumber,
+                Rate = C.Rate,
+                ProfilePicture = C.ProfilePicture,
                 Cars = C.Cars.Select(cars => new CarDTO
                 {
                     Id = cars.Id,
@@ -59,6 +64,8 @@ namespace MAYAS_Car_Rent.Models.Service
                     Year = cars.Year,
                     Model = cars.Model,
                     PlateNumber = cars.PlateNumber,
+                    ImageUrl = cars.ImageUrl,
+                    PricePerDay = cars.PricePerDay
                 }).ToList(),
                 Reservations = C.Reservations.Select(reservation => new ReservationDTO
                 {
@@ -66,13 +73,15 @@ namespace MAYAS_Car_Rent.Models.Service
                     PickupDate = reservation.PickupDate,
                     ReturnDate = reservation.ReturnDate,
                     NumberOfDays = reservation.NumberOfDays,
-                    Price = reservation.Price
+                    Price = reservation.Price                    
                 }).ToList(),
                 Employees = C.Employees.Select(employee => new EmployeeDTO
                 {
                     Id = employee.Id,
                     Name = employee.Name,
-                    PhoneNumber = employee.PhoneNumber
+                    PhoneNumber = employee.PhoneNumber,
+                    ProfilePicture = employee.ProfilePicture,
+                    Email = employee.Email
                 }).ToList()
             }).ToListAsync();
         }
@@ -86,6 +95,8 @@ namespace MAYAS_Car_Rent.Models.Service
                 UserName = C.UserName,
                 Address = C.Address,
                 PhoneNumber = C.PhoneNumber,
+                Rate = C.Rate,
+                ProfilePicture = C.ProfilePicture,                
                 Cars = C.Cars.Select(cars => new CarDTO
                 {
                     Id = cars.Id,
@@ -94,6 +105,8 @@ namespace MAYAS_Car_Rent.Models.Service
                     Year = cars.Year,
                     Model = cars.Model,
                     PlateNumber = cars.PlateNumber,
+                    ImageUrl = cars.ImageUrl,
+                    PricePerDay = cars.PricePerDay
                 }).ToList(),
                 Reservations = C.Reservations.Select(reservation => new ReservationDTO
                 {
@@ -108,7 +121,8 @@ namespace MAYAS_Car_Rent.Models.Service
                     Id = employee.Id,
                     Name = employee.Name,
                     Email = employee.Email,
-                    PhoneNumber = employee.PhoneNumber
+                    PhoneNumber = employee.PhoneNumber,
+                    ProfilePicture = employee.ProfilePicture,                    
                 }).ToList()
             }).FirstOrDefaultAsync(x => x.Id == Id);
         }       
@@ -123,7 +137,8 @@ namespace MAYAS_Car_Rent.Models.Service
                 UserName = company.UserName,
                 Address = company.Address,
                 PhoneNumber = company.PhoneNumber,
-                CommercialRegistrationNumber = company.CommercialRegistrationNumber
+                CommercialRegistrationNumber = company.CommercialRegistrationNumber,
+                ProfilePicture = company.ProfilePicture
             };
             _context.Entry(UpdateCompany).State = EntityState.Modified;
             await _context.SaveChangesAsync();
@@ -203,6 +218,8 @@ namespace MAYAS_Car_Rent.Models.Service
                 UserName = C.UserName,
                 Address = C.Address,
                 PhoneNumber = C.PhoneNumber,
+                ProfilePicture = C.ProfilePicture,
+                Rate = C.Rate                
             })
                 .Where(x => x.UserName.Contains(term));
             
@@ -220,7 +237,9 @@ namespace MAYAS_Car_Rent.Models.Service
             { 
                 UserName = company.UserName,
                 Address = company.Address,
-                PhoneNumber = company.PhoneNumber,
+                PhoneNumber = company.PhoneNumber,                
+                ProfilePicture = company.ProfilePicture,
+                Rate = company.Rate,
                 Cars = company.Cars
                 .Select(cars  => new CarDTO
                 {

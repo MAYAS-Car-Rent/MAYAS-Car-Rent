@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -16,7 +17,7 @@ namespace MAYAS_Car_Rent.Models
 
         public int NumberOfDays { get; set; }
         [Required]
-        public decimal Price { get; set; }
+        public double Price { get; set; }
 
         public Company Company { get; set; }
 
@@ -25,7 +26,7 @@ namespace MAYAS_Car_Rent.Models
         public Customer Customer { get; set; }
 
         public int CustomerId { get; set; }
-
+        [ForeignKey("CarId")]
         public Car Car { get; set; }
 
         public int CarId { get; set; }

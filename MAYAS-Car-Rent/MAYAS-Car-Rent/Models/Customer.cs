@@ -20,11 +20,9 @@ namespace MAYAS_Car_Rent.Models
         [Required]
         public string PhoneNumber { get; set; }
         [Required]
-        public int NationalNumber { get; set; }
+        public long NationalNumber { get; set; }
 
-        public string Address { get; set; }
-
-        public List<Car> Cars { get; set; }
+        public string Address { get; set; }      
 
         public List<Reservation> Reservations { get; set; }
 

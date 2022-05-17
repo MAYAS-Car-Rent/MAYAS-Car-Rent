@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace MAYAS_Car_Rent.Migrations
 {
     [DbContext(typeof(MAYASDbContext))]
-    [Migration("20220515075411_Edit_Customers_table")]
-    partial class Edit_Customers_table
+    [Migration("20220517191422_MAYAS_DataBase")]
+    partial class MAYAS_DataBase
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -130,14 +130,11 @@ namespace MAYAS_Car_Rent.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("CompanyId")
+                    b.Property<int?>("CompanyId")
                         .HasColumnType("int");
 
-                    b.Property<int?>("CustomerId")
-                        .HasColumnType("int");
-
-                    b.Property<bool>("IsRent")
-                        .HasColumnType("bit");
+                    b.Property<string>("ImageUrl")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Model")
                         .IsRequired()
@@ -151,14 +148,15 @@ namespace MAYAS_Car_Rent.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<double>("PricePerDay")
+                        .HasColumnType("float");
+
                     b.Property<int>("Year")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
 
                     b.HasIndex("CompanyId");
-
-                    b.HasIndex("CustomerId");
 
                     b.ToTable("Cars");
                 });
@@ -187,6 +185,15 @@ namespace MAYAS_Car_Rent.Migrations
                     b.Property<string>("PhoneNumber")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("ProfilePicture")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<double>("Rate")
+                        .HasColumnType("float");
+
+                    b.Property<int>("RateCount")
+                        .HasColumnType("int");
+
                     b.Property<string>("UserName")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -204,6 +211,8 @@ namespace MAYAS_Car_Rent.Migrations
                             Email = "SultanRental@Gmail.com",
                             Password = "Sultan123",
                             PhoneNumber = "962791234567",
+                            Rate = 0.0,
+                            RateCount = 0,
                             UserName = "Sultan Rental"
                         },
                         new
@@ -214,6 +223,8 @@ namespace MAYAS_Car_Rent.Migrations
                             Email = "OlaRental@Gmail.com",
                             Password = "Ola123",
                             PhoneNumber = "962791234567",
+                            Rate = 0.0,
+                            RateCount = 0,
                             UserName = "Ola Rental"
                         },
                         new
@@ -224,6 +235,8 @@ namespace MAYAS_Car_Rent.Migrations
                             Email = "HaneenRental@Gmail.com",
                             Password = "Haneen123",
                             PhoneNumber = "962791234567",
+                            Rate = 0.0,
+                            RateCount = 0,
                             UserName = "Haneen Rental"
                         },
                         new
@@ -234,6 +247,8 @@ namespace MAYAS_Car_Rent.Migrations
                             Email = "AbdalrahmanRental@Gmail.com",
                             Password = "Abdalrahman123",
                             PhoneNumber = "962791234567",
+                            Rate = 0.0,
+                            RateCount = 0,
                             UserName = "Abdalrahman Rental"
                         });
                 });
@@ -256,8 +271,8 @@ namespace MAYAS_Car_Rent.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(1)");
 
-                    b.Property<int>("NationalNumber")
-                        .HasColumnType("int");
+                    b.Property<long>("NationalNumber")
+                        .HasColumnType("bigint");
 
                     b.Property<string>("Password")
                         .IsRequired()
@@ -302,6 +317,9 @@ namespace MAYAS_Car_Rent.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("ProfilePicture")
+                        .HasColumnType("nvarchar(max)");
+
                     b.HasKey("Id");
 
                     b.HasIndex("CompanyId");
@@ -331,8 +349,8 @@ namespace MAYAS_Car_Rent.Migrations
                     b.Property<DateTime>("PickupDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<decimal>("Price")
-                        .HasColumnType("decimal(18,2)");
+                    b.Property<double>("Price")
+                        .HasColumnType("float");
 
                     b.Property<DateTime>("ReturnDate")
                         .HasColumnType("datetime2");
@@ -483,13 +501,7 @@ namespace MAYAS_Car_Rent.Migrations
                 {
                     b.HasOne("MAYAS_Car_Rent.Models.Company", "Company")
                         .WithMany("Cars")
-                        .HasForeignKey("CompanyId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("MAYAS_Car_Rent.Models.Customer", null)
-                        .WithMany("Cars")
-                        .HasForeignKey("CustomerId");
+                        .HasForeignKey("CompanyId");
 
                     b.Navigation("Company");
                 });
@@ -599,8 +611,6 @@ namespace MAYAS_Car_Rent.Migrations
 
             modelBuilder.Entity("MAYAS_Car_Rent.Models.Customer", b =>
                 {
-                    b.Navigation("Cars");
-
                     b.Navigation("Reservations");
                 });
 #pragma warning restore 612, 618
