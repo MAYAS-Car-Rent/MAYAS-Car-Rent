@@ -154,42 +154,7 @@ namespace MAYASCarRentTest
             // Assert
             Assert.NotEqual(2, result.Count);
         }
-        [Fact]
-        public async Task CanUpdateCar()
-        {
-            // Arrange
+        
 
-            var car1 = new Car
-            {
-                Id = 1,
-                CompanyId = 1,
-                Name = "BM",
-                Color = "Red",
-                Model = "X5",
-                Year = 2002,
-                IsRent = false,
-                PlateNumber = "18-75752"
-            };
-            var repository = BuildRepository();
-            await repository.CreateCar(car1);
-            var car2 = new Car
-            {
-                Id = 2,
-                CompanyId = 1,
-                Name = "BMW",
-                Color = "Red",
-                Model = "X5",
-                Year = 2002,
-                IsRent = false,
-                PlateNumber = "18-75752"
-            };
-
-            await repository.UpdateCar(1,car2);
-
-            CarDTO result = await repository.GetCar(1);
-
-            // Assert
-            Assert.Equal("BMW", result.Name);
-        }
     }
 }

@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace MAYAS_Car_Rent.Models.Service
 {
-    public class CarService : ICar
+    public class CarService : ICar // sultan
     {
         private readonly MAYASDbContext _context;
 
@@ -18,7 +18,7 @@ namespace MAYAS_Car_Rent.Models.Service
             _context = context;
         }
 
-        public async Task<Car> CreateCar(Car car)
+        public async Task<Car> CreateCar(Car car)  // logic for Create Car
         {
             Car NewCar = new Car
             {
@@ -33,14 +33,14 @@ namespace MAYAS_Car_Rent.Models.Service
             return car;
         }
 
-        public async Task DeleteCar(int Id)
+        public async Task DeleteCar(int Id) // logic for Delete Car
         {
             Car car = await _context.Cars.FindAsync(Id);
             _context.Entry(car).State = EntityState.Deleted;
             await _context.SaveChangesAsync();
         }
 
-        public async Task<CarDTO> GetCar(int Id)
+        public async Task<CarDTO> GetCar(int Id) // logic for show car by id
         {
             return await _context.Cars.Select(car => new CarDTO
             {
@@ -54,7 +54,7 @@ namespace MAYAS_Car_Rent.Models.Service
             }).FirstOrDefaultAsync(x => x.Id == Id);
         }
 
-        public async Task<List<CarDTO>> GetCars()
+        public async Task<List<CarDTO>> GetCars() // logic for get list of cars
         {
             return await _context.Cars.Select(car => new CarDTO
             {
@@ -68,7 +68,7 @@ namespace MAYAS_Car_Rent.Models.Service
             }).ToListAsync();
         }
 
-        public async Task<Car> UpdateCar(int id, Car car)
+        public async Task<Car> UpdateCar(int id, Car car) // logic for Update Car
         {
             Car updateCar = new Car
             {
@@ -84,28 +84,28 @@ namespace MAYAS_Car_Rent.Models.Service
             await _context.SaveChangesAsync();
             return car;
         }
-                                        // Made by Mutaz Altbakhi
+        // Made by Mutaz Altbakhi
 
-        public async Task<List<CarDTO>> FilterOnCar(string name , int year, string color , string model)
+        public async Task<List<CarDTO>> FilterOnCar(string name, int year, string color, string model)
         {
-           var result = await _context.Cars.Select(
+            var result = await _context.Cars.Select(
 
-                      car1 => new CarDTO
-                      {
-                          Name = car1.Name.ToLower(),
-                          Color = car1.Color.ToLower(),
-                          Year = car1.Year,
-                          Model = car1.Model.ToLower(),
-                          PlateNumber = car1.PlateNumber
-                      }
-              )
-              .AsNoTracking()
-               .ToListAsync();
+                       car1 => new CarDTO
+                       {
+                           Name = car1.Name.ToLower(),
+                           Color = car1.Color.ToLower(),
+                           Year = car1.Year,
+                           Model = car1.Model.ToLower(),
+                           PlateNumber = car1.PlateNumber
+                       }
+               )
+               .AsNoTracking()
+                .ToListAsync();
             if (name != null)
             {
                 result = result.Where(y => y.Name.Contains(name)).ToList();
             }
-            if (year > 0) 
+            if (year > 0)
             {
                 result = result.Where(y => y.Year.Equals(year)).ToList();
             }
@@ -120,6 +120,32 @@ namespace MAYAS_Car_Rent.Models.Service
 
             return result;
         }
+        public async Task<List<CarDTO>> SortYear(int way) // sort the car by yaer ascending or descending logic by sultan
+        {
+            var car =  await _context.Cars.Select(
 
+                      car1 => new CarDTO
+                      {
+                          Id = car1.Id,
+                          Name = car1.Name,
+                          Color = car1.Color,
+                          Year = car1.Year,
+                          Model = car1.Model,
+                          PlateNumber = car1.PlateNumber
+                      }
+
+              ).ToListAsync();
+            if (way == 1)
+            {
+                car = car.OrderBy(car => car.Year).ToList();
+            }
+            if (way == 9)
+            {
+                car = car.OrderByDescending(car => car.Year).ToList();
+            }
+            return car;
+        }
+    
+        
     }
 }

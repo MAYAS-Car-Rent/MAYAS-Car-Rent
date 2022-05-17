@@ -31,6 +31,7 @@ namespace MAYAS_Car_Rent.Models.Interface
         Task RemoveEmployeeFromCompany(int EmployeeId, int CompanyId);                
 
         Task <List<CompanyDTO>> SearchByName(string name);
+        Task<List<CompanyDTO>> SearchByAddress(string address);
 
 
 

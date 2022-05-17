@@ -152,7 +152,7 @@ namespace MAYAS_Car_Rent.Controller
             await _company.RemoveReservationFromCompany(reservationId, companyId);
             return NoContent();
         }
-        // GET: api/Cars/name/{search}
+        // GET: api/Companies/name/{search}
         [HttpGet("name/{search}")]
         public async Task<ActionResult<CompanyDTO>> GetCarbyname(string name)
         {
@@ -163,6 +163,20 @@ namespace MAYAS_Car_Rent.Controller
 
             }
             return Ok(co);
+
+        }
+
+        // GET: api/Companies/Address/{Address}
+        [HttpGet("Address/{Address}")] //controler to Search company By Address by sultan
+        public async Task<ActionResult<CompanyDTO>> SearchByAddress(string address)
+        {
+            var company = await _company.SearchByAddress(address);
+            if (company == null)
+            {
+                return BadRequest($"Your search for {address} did not return any results");
+
+            }
+            return Ok(company);
 
         }
     }

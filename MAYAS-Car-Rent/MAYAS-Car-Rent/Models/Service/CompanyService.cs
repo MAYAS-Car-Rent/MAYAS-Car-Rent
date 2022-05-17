@@ -211,6 +211,29 @@ namespace MAYAS_Car_Rent.Models.Service
            }).AsNoTracking().ToListAsync();
 
             return c;
-        }                
+        }
+
+        // logic to Search company By Address
+        public async Task<List<CompanyDTO>> SearchByAddress(string address) // sultan 
+        {
+            return await _context.Companies.Select(company => new CompanyDTO
+            { 
+                UserName = company.UserName,
+                Address = company.Address,
+                PhoneNumber = company.PhoneNumber,
+                Cars = company.Cars
+                .Select(cars  => new CarDTO
+                {
+                    Name = cars.Name,
+                    Color = cars.Color,
+                    Model = cars.Model,
+                    Year = cars.Year
+                }).ToList()
+
+            }).Where(x => x.Address.Contains(address)).ToListAsync();
+        }
+
+
+
     }
 }
