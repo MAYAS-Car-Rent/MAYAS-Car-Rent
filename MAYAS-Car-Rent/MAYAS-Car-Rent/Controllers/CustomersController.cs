@@ -14,7 +14,7 @@ namespace MAYAS_Car_Rent.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class customersController : ControllerBase  //Made by Haneen
+    public class customersController : ControllerBase  //Made by Haneen Al-Hamdan
     {
         private readonly ICustomer _customer;
 
