@@ -9,4 +9,5 @@ namespace MAYAS_Car_Rent.Models
     public class ApplicationUser : IdentityUser
     {
     }
+    
 }

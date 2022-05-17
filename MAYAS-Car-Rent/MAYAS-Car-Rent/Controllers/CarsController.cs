@@ -25,14 +25,14 @@ namespace MAYAS_Car_Rent.Controller
 
         // GET: api/Cars
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<CarDTO>>> GetCars()
+        public async Task<ActionResult<IEnumerable<CarDTO>>> GetCars() // show list of cars
         {
             return Ok(await _car.GetCars());
         }
 
         // GET: api/Cars/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<CarDTO>> GetCar(int id)
+        public async Task<ActionResult<CarDTO>> GetCar(int id) // show car by id
         {
             var car = await _car.GetCar(id);
 
@@ -42,7 +42,7 @@ namespace MAYAS_Car_Rent.Controller
         // PUT: api/Cars/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutCar(int id, Car car)
+        public async Task<IActionResult> PutCar(int id, Car car) // update car
         {
             if (id != car.Id)
             {
@@ -56,7 +56,7 @@ namespace MAYAS_Car_Rent.Controller
         // POST: api/Cars
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<Car>> PostCar(Car car)
+        public async Task<ActionResult<Car>> PostCar(Car car) // add car
         {
             await _car.CreateCar(car);
             return CreatedAtAction("GetRoom", new { id = car.Id }, car);
@@ -64,7 +64,7 @@ namespace MAYAS_Car_Rent.Controller
 
         // DELETE: api/Cars/5
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteCar(int id)
+        public async Task<IActionResult> DeleteCar(int id) // Delete Car by id
         {
             await _car.DeleteCar(id);
             return NoContent();
@@ -83,6 +83,15 @@ namespace MAYAS_Car_Rent.Controller
             return Ok(car);
 
         }
+        [HttpGet("SortbyYear")]  // sort the car by yaer ascending or descending controler
+        public async Task<ActionResult<CarDTO>> SortYear(int way) // sultan
+        {
+            var Year = await _car.SortYear(way);
+            
+            return Ok(Year);
+
+        }
+       
 
 
 

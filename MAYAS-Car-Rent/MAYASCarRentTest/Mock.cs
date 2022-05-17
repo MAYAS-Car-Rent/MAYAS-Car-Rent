@@ -33,7 +33,7 @@ namespace MAYASCarRentTest
         }
         protected async Task<Car> CreateAndSaveTestCar()
         {
-            var car = new Car { Id = 5, Name = "KIA", Color = "Red", Year = 2022, Model = "sportage", PlateNumber = "Jo-12-1234" };
+            var car = new Car { Id = 200, Name = "test", Color = "Red", Year = 2000, Model = "test", PlateNumber = "Jo-13-1434" };
             _db.Cars.Add(car);
             await _db.SaveChangesAsync();
             Assert.NotEqual(0, car.Id);
@@ -41,11 +41,11 @@ namespace MAYASCarRentTest
         }
         protected async Task<Company> CreateAndSaveTestCompany()
         {
-            var company = new Company { Id = 5, UserName = "Sultan Rental", Email = "SultanRental@Gmail.com", Password = "Sultan123", Address = "Amman", PhoneNumber = "962791234567", CommercialRegistrationNumber = 123456789 };
+            var company = new Company { Id = 55, UserName = "Sultan Rental", Email = "SultanRental@Gmail.com", Password = "Sultan123", Address = "Amman", PhoneNumber = "962791234567", CommercialRegistrationNumber = 123456789 };
             _db.Companies.Add(company);
             await _db.SaveChangesAsync();
             Assert.NotEqual(0, company.Id);
             return company;
         }
     }
-    }
+}

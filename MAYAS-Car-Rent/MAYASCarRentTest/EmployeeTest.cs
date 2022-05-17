@@ -11,7 +11,7 @@ using Xunit;
 
 namespace MAYASCarRentTest
 {
-    public class EmployeeTest :Mock
+    public class EmployeeTest : Mock
     {
         private IEmployee BuildRepository()
         {
