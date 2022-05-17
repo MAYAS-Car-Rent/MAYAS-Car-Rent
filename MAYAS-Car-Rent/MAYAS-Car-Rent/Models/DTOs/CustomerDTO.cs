@@ -19,7 +19,7 @@ namespace MAYAS_Car_Rent.Models.DTOs
         [Required]
         public string PhoneNumber { get; set; }
         [Required]
-        public int NationalNumber { get; set; }
+        public long NationalNumber { get; set; }
         public string Address { get; set; }
         public List<CarDTO> Cars { get; set; }
         public List<ReservationDTO> Reservations { get; set; }

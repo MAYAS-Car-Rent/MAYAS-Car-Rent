@@ -16,6 +16,10 @@ namespace MAYAS_Car_Rent.Models.DTOs
         [Required]
         public string PhoneNumber { get; set; }
 
+        public string ProfilePicture { get; set; }
+
+        public double Rate { get; set; }
+
         public List<CarDTO> Cars { get; set; }
 
         public List<ReservationDTO> Reservations { get; set; }

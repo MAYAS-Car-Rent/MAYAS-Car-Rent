@@ -11,6 +11,8 @@ namespace MAYAS_Car_Rent.Models
         public int Id { get; set; }
         [Required]
         public string UserName { get; set; }
+
+        public string ProfilePicture { get; set; }
         [Required]
         public string Email { get; set; }
         [Required]
@@ -21,6 +23,10 @@ namespace MAYAS_Car_Rent.Models
         public string PhoneNumber { get; set; }
         [Required]
         public int CommercialRegistrationNumber{ get; set; }
+        
+        public double Rate { get; set; }
+
+        public int RateCount { get; set; }
 
         public List<Car> Cars { get; set; }
 

@@ -16,7 +16,7 @@ namespace MAYAS_Car_Rent.Models.DTOs
 
         public int NumberOfDays { get; set; }
         [Required]
-        public decimal Price { get; set; }
+        public double Price { get; set; }
 
         public CompanyDTO Company { get; set; }
     }

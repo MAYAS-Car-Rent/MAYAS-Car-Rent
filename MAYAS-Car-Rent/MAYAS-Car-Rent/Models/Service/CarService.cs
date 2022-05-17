@@ -27,6 +27,9 @@ namespace MAYAS_Car_Rent.Models.Service
                 Year = car.Year,
                 Model = car.Model,
                 PlateNumber = car.PlateNumber,
+                PricePerDay = car.PricePerDay,
+                ImageUrl = car.ImageUrl,
+                CompanyId = car.CompanyId
             };
             _context.Entry(NewCar).State = EntityState.Added;
             await _context.SaveChangesAsync();
@@ -50,6 +53,8 @@ namespace MAYAS_Car_Rent.Models.Service
                 Year = car.Year,
                 Model = car.Model,
                 PlateNumber = car.PlateNumber,
+                PricePerDay = car.PricePerDay,
+                ImageUrl = car.ImageUrl
 
             }).FirstOrDefaultAsync(x => x.Id == Id);
         }
@@ -64,6 +69,8 @@ namespace MAYAS_Car_Rent.Models.Service
                 Year = car.Year,
                 Model = car.Model,
                 PlateNumber = car.PlateNumber,
+                PricePerDay = car.PricePerDay,
+                ImageUrl = car.ImageUrl
 
             }).ToListAsync();
         }
@@ -78,7 +85,8 @@ namespace MAYAS_Car_Rent.Models.Service
                 Year = car.Year,
                 Model = car.Model,
                 PlateNumber = car.PlateNumber,
-                IsRent = car.IsRent
+                ImageUrl = car.ImageUrl,
+                PricePerDay = car.PricePerDay                
             };
             _context.Entry(updateCar).State = EntityState.Modified;
             await _context.SaveChangesAsync();
@@ -96,7 +104,9 @@ namespace MAYAS_Car_Rent.Models.Service
                            Color = car1.Color.ToLower(),
                            Year = car1.Year,
                            Model = car1.Model.ToLower(),
-                           PlateNumber = car1.PlateNumber
+                           PlateNumber = car1.PlateNumber,
+                           PricePerDay = car1.PricePerDay,
+                           ImageUrl = car1.ImageUrl
                        }
                )
                .AsNoTracking()
@@ -131,7 +141,9 @@ namespace MAYAS_Car_Rent.Models.Service
                           Color = car1.Color,
                           Year = car1.Year,
                           Model = car1.Model,
-                          PlateNumber = car1.PlateNumber
+                          PlateNumber = car1.PlateNumber,
+                          PricePerDay = car1.PricePerDay,
+                          ImageUrl = car1.ImageUrl
                       }
 
               ).ToListAsync();

@@ -30,8 +30,8 @@ namespace MAYASCarRentTest
                 Color = "Red",
                 Model = "X5",
                 Year = 2002,
-                IsRent = false,
-                PlateNumber = "18-75752"
+                PlateNumber = "18-75752",
+                PricePerDay = 25.5,
 
             };
             var repository = BuildRepository();
@@ -57,8 +57,8 @@ namespace MAYASCarRentTest
                 Color = "Red",
                 Model = "X5",
                 Year = 2002,
-                IsRent = false,
-                PlateNumber = "18-75752"
+                PlateNumber = "18-75752",
+                PricePerDay = 25.5,
             };
 
             var car2 = new Car
@@ -69,8 +69,8 @@ namespace MAYASCarRentTest
                 Color = "Red",
                 Model = "camry",
                 Year = 2005,
-                IsRent = false,
-                PlateNumber = "19-75752"
+                PlateNumber = "19-75752",
+                PricePerDay = 25.5,
             };
 
             var repository = BuildRepository();
@@ -98,8 +98,8 @@ namespace MAYASCarRentTest
                 Color = "Red",
                 Model = "X5",
                 Year = 2002,
-                IsRent = false,
-                PlateNumber = "18-75752"
+                PlateNumber = "18-75752",
+                PricePerDay = 25.5,
             };
 
             var car2 = new Car
@@ -110,8 +110,8 @@ namespace MAYASCarRentTest
                 Color = "Red",
                 Model = "camry",
                 Year = 2005,
-                IsRent = false,
-                PlateNumber = "19-75752"
+                PlateNumber = "19-75752",
+                PricePerDay = 25.5,
             };
 
 
@@ -139,8 +139,8 @@ namespace MAYASCarRentTest
                 Color = "Red",
                 Model = "X5",
                 Year = 2002,
-                IsRent = false,
-                PlateNumber = "18-75752"
+                PlateNumber = "18-75752",
+                PricePerDay = 25.5,
             };
             var repository = BuildRepository();
 
@@ -154,7 +154,7 @@ namespace MAYASCarRentTest
             // Assert
             Assert.NotEqual(2, result.Count);
         }
-        
+
 
     }
 }
