@@ -17,11 +17,11 @@ namespace MAYAS_Car_Rent.Models.DTOs
         public string Email { get; set; }
         [Required]
         public string Password { get; set; }
-        public string Gender { get; set; }
+        public Char Gender { get; set; }
         [Required]
         public string PhoneNumber { get; set; }
         [Required]
-        public string NationalNumber { get; set; }
+        public long NationalNumber { get; set; }
         public string Address { get; set; }
         public List<CarDTO> Cars { get; set; }
         public List<ReservationDTO> Reservations { get; set; }

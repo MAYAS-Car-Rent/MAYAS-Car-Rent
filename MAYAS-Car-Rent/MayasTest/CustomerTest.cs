@@ -26,11 +26,11 @@ namespace MayasTest
                 UserName = "Haneen Alhamdan",
                 Email = "haneenalhamdan@gmail.com",
                 Password = "12345",
-                Gender = "Femal",
+                Gender = 'F',
                 PhoneNumber = "+962796706610",
-                NationalNumber = "9962000279",
+                NationalNumber = 9962000279,
                 Address = "Amman",
-
+                
             };
 
             var repository = CreatCustomerR();
@@ -57,9 +57,9 @@ namespace MayasTest
                 UserName = "Haneen Alhamdan",
                 Email = "haneenalhamdan@gmail.com",
                 Password = "12345",
-                Gender = "Femal",
+                Gender = 'f',
                 PhoneNumber = "+962796706610",
-                NationalNumber = "9962000279",
+                NationalNumber = 9962000279,
                 Address = "Amman",
             };
 
@@ -69,9 +69,9 @@ namespace MayasTest
                 UserName = "Mahmoud Alhamdan",
                 Email = "mahmoudalhamdan@gmail.com",
                 Password = "00000",
-                Gender = "Mmal",
+                Gender = 'M',
                 PhoneNumber = "+96279305981",
-                NationalNumber = "9992000279",
+                NationalNumber = 9992000279,
                 Address = "Amman",
             };
             var customer3 = new Customer
@@ -80,9 +80,9 @@ namespace MayasTest
                 UserName = "Gader Farrar",
                 Email = "gaderfrrar@gmail.com",
                 Password = "54321",
-                Gender = "Femal",
+                Gender = 'f',
                 PhoneNumber = "+962799012354",
-                NationalNumber = "201545662",
+                NationalNumber = 201545662,
                 Address = "Amman",
             };
 
@@ -111,9 +111,9 @@ namespace MayasTest
                 UserName = "Haneen Alhamdan",
                 Email = "haneenalhamdan@gmail.com",
                 Password = "12345",
-                Gender = "Femal",
+                Gender = 'F',
                 PhoneNumber = "+962796706610",
-                NationalNumber = "9962000279",
+                NationalNumber = 9962000279,
                 Address = "Amman",
             };
 
@@ -123,9 +123,9 @@ namespace MayasTest
                 UserName = "Mahmoud Alhamdan",
                 Email = "mahmoudalhamdan@gmail.com",
                 Password = "00000",
-                Gender = "Mmal",
+                Gender = 'M',
                 PhoneNumber = "+96279305981",
-                NationalNumber = "9992000279",
+                NationalNumber = 9992000279,
                 Address = "Amman",
             };
            
@@ -156,9 +156,9 @@ namespace MayasTest
                 UserName = "Adam Alhamdan",
                 Email = "mahmoudalhamdan@gmail.com",
                 Password = "00000",
-                Gender = "Mmal",
+                Gender = 'M',
                 PhoneNumber = "+96279305981",
-                NationalNumber = "9992000279",
+                NationalNumber = 9992000279,
                 Address = "Amman",
             };
 

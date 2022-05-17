@@ -16,11 +16,11 @@ namespace MAYAS_Car_Rent.Models
         [Required]
         public string Password { get; set; }
 
-        public string Gender { get; set; }
+        public Char Gender { get; set; }
         [Required]
         public string PhoneNumber { get; set; }
         [Required]
-        public string NationalNumber { get; set; }
+        public long NationalNumber { get; set; }
 
         public string Address { get; set; }
 
