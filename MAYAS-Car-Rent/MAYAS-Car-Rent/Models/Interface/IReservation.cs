@@ -10,7 +10,7 @@ namespace MAYAS_Car_Rent.Models.Interface
     {
         Task<ReservationDTO> GetReservation(int Id);
         Task<List<ReservationDTO>> GetReservations();
-        Task<Reservation> CreateReservation(Reservation reservation);
+        Task<Object> CreateReservation(Reservation reservation);
 
         Task<Reservation> UpdateReservation(int Id, Reservation reservation);
         Task DeleteReservation(int Id);
