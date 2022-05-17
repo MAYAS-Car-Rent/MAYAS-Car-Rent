@@ -19,7 +19,8 @@ namespace MAYAS_Car_Rent.Models.Interface
         Task DeleteCar(int Id);
 
         Task<List<CarDTO>> FilterOnCar(string name, int year, string color, string model);
-        Task<List<CarDTO>> SortYear(int way);
+        Task<List<CarDTO>> SortYear();
+        Task<List<CarDTO>> SortByPrice(int price);
 
 
 

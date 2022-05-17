@@ -58,8 +58,7 @@ namespace MAYAS_Car_Rent.Controller
         [HttpPost]
         public async Task<ActionResult<Car>> PostCar(Car car) // add car
         {
-            await _car.CreateCar(car);
-            return CreatedAtAction("GetRoom", new { id = car.Id }, car);
+            return Ok(await _car.CreateCar(car));
         }
 
         // DELETE: api/Cars/5
@@ -83,15 +82,24 @@ namespace MAYAS_Car_Rent.Controller
             return Ok(car);
 
         }
-        [HttpGet("SortbyYear")]  // sort the car by yaer ascending or descending controler
-        public async Task<ActionResult<CarDTO>> SortYear(int way) // sultan
+        // GET: api/Cars/SortbyYearDescending
+        [HttpGet("SortbyYearDescending")]  // sort the car by yaer descending controler
+        public async Task<ActionResult<CarDTO>> SortYear() // sultan
         {
-            var Year = await _car.SortYear(way);
+            var Year = await _car.SortYear();
             
             return Ok(Year);
 
         }
-       
+        // GET: api/Cars/SortbyPriceDescending
+        [HttpGet("SortByPriceDescending")]  // sort the car by price descending controler
+        public async Task<ActionResult<CarDTO>> SortByPrice(int price)
+        {
+            var Price = await _car.SortByPrice(price);
+
+            return Ok(Price);
+        }
+
 
 
 

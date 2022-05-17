@@ -130,7 +130,7 @@ namespace MAYAS_Car_Rent.Models.Service
 
             return result;
         }
-        public async Task<List<CarDTO>> SortYear(int way) // sort the car by yaer ascending or descending logic by sultan
+        public async Task<List<CarDTO>> SortYear() // sort the car by yaer ascending or descending logic by sultan
         {
             var car =  await _context.Cars.Select(
 
@@ -146,18 +146,29 @@ namespace MAYAS_Car_Rent.Models.Service
                           ImageUrl = car1.ImageUrl
                       }
 
-              ).ToListAsync();
-            if (way == 1)
-            {
-                car = car.OrderBy(car => car.Year).ToList();
-            }
-            if (way == 9)
-            {
-                car = car.OrderByDescending(car => car.Year).ToList();
-            }
+              ).OrderByDescending(car => car.Year).ToListAsync();
             return car;
         }
-    
-        
+        public async Task<List<CarDTO>> SortByPrice(int price)
+        {
+            var car = await _context.Cars.Select(
+
+                         car1 => new CarDTO
+                         {
+                             Id = car1.Id,
+                             Name = car1.Name,
+                             Color = car1.Color,
+                             Year = car1.Year,
+                             Model = car1.Model,
+                             PlateNumber = car1.PlateNumber,
+                             PricePerDay = car1.PricePerDay,
+                             ImageUrl = car1.ImageUrl
+                         }).Where(p => p.PricePerDay <= price).OrderByDescending(car =>car.PricePerDay).ToListAsync();
+            return car;
+
+        }
+
+
+
     }
 }
