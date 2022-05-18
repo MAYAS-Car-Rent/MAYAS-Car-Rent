@@ -74,7 +74,7 @@ namespace MAYAS_Car_Rent.Controller
                 return NotFound();
             }
             await _car.DeleteCar(id);
-            return NoContent();
+            return Ok("This Car was Deleted");
         }      
 
         // GET: api/Cars/filter             Made by Mutaz Altbakhi

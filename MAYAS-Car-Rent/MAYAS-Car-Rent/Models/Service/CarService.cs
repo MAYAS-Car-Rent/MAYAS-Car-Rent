@@ -33,7 +33,7 @@ namespace MAYAS_Car_Rent.Models.Service
             };
             _context.Entry(NewCar).State = EntityState.Added;
             await _context.SaveChangesAsync();
-            return car;
+            return NewCar;
         }
 
         public async Task DeleteCar(int Id) // logic for Delete Car
