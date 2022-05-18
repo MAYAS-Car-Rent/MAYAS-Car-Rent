@@ -11,10 +11,12 @@ namespace MAYAS_Car_Rent.Models.Service
     public class EmployeeService : IEmployee //Made by AbdUlrahman Jaran
     {
         private MAYASDbContext _context;
+        
 
-        public EmployeeService(MAYASDbContext context)
+        public EmployeeService(MAYASDbContext context )
         {
             _context = context;
+            
         }
 
         public async Task<Employee> CreateEmployee(Employee employee)
@@ -109,5 +111,12 @@ namespace MAYAS_Car_Rent.Models.Service
                 .ToListAsync();
             return result;
         }
+
+        //public async Task<string>AcceptReservation(Reservation reservation)
+        //{
+        //    var Myreservation = await _reservation.CreateReservation(reservation);
+        //        if(Myreservation.Equals(false))
+            //return "";
+        //}
     }
 }

@@ -16,9 +16,11 @@ namespace MAYAS_Car_Rent.Controller
     public class ReservationsController : ControllerBase // Made By Ola M AL-Shlool
     {
         private readonly IReservation _reservation;
-        public ReservationsController(IReservation reservation)
+        private readonly IEmployee _employee;
+        public ReservationsController(IReservation reservation , IEmployee employee)
         {
             _reservation = reservation;
+            _employee = employee;
         }
         // GET: api/Reservations
         [HttpGet]

@@ -180,8 +180,7 @@ namespace MAYASCarRentTest
         {
             // Arrange
             var employee = new Employee
-            {
-                Id = 3,
+            {                
                 CompanyId = 1,
                 Name = "Ola Shlool",
                 Email = "olashlool@gmail.com",
@@ -192,6 +191,9 @@ namespace MAYASCarRentTest
             {
                 Id = 3,
                 Name = "Noora Abo ALhaija",
+                Email = "olashlool@gmail.com",
+                Password = "2052022",
+                PhoneNumber = "+962 785344281"
             };
             var repository = BuildRepository();
             employee = await repository.CreateEmployee(employee);

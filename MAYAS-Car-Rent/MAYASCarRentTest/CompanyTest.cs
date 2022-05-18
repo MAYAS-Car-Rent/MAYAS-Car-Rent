@@ -168,7 +168,7 @@ namespace MAYAS_Car_Rent
             // Arrange
             var company = new Company
             {
-                Id = 1,
+                
                 UserName = "Mutaz Rental",
                 Email = "MutazRental@Gmail.com",
                 Password = "Mutaz123",
@@ -178,14 +178,19 @@ namespace MAYAS_Car_Rent
             };
             var companyUpdated = new Company
             {
-                Id = 1,
+                Id = 4,
                 UserName = "Mohammed Rental",
+                Email = "MutazRental@Gmail.com",
+                Password = "Mutaz123",
+                Address = "Amman",
+                PhoneNumber = "962725834567",
+                CommercialRegistrationNumber = 123456654
             };
             var repository = BuildRepository();
             company = await repository.CreateCompany(company);
             // Act
-            var updateCompany = await repository.UpdateCompany(companyUpdated.Id, companyUpdated);
-            CompanyDTO result = await repository.GetCompany(1);
+             await repository.UpdateCompany(companyUpdated.Id, companyUpdated);
+            CompanyDTO result = await repository.GetCompany(4);
             // Assert
             Assert.Equal("Mohammed Rental", result.UserName);
             Assert.NotEqual("Mutaz Rental", result.UserName);
