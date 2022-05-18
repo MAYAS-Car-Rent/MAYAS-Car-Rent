@@ -180,10 +180,16 @@ namespace MAYAS_Car_Rent
             {
                 Id = 45,
                 UserName = "Mohammed Rental",
+                Email = "MutazRental@Gmail.com",
+                Password = "Mutaz123",
+                Address = "Amman",
+                PhoneNumber = "962725834567",
+                CommercialRegistrationNumber = 123456654
             };
             var repository = BuildRepository();
             company = await repository.CreateCompany(company);
             // Act
+
             await repository.UpdateCompany(companyUpdated.Id, companyUpdated);
             CompanyDTO result = await repository.GetCompany(45);
             // Assert

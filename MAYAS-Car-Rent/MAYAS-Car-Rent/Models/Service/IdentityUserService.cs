@@ -1,6 +1,7 @@
 ﻿using MAYAS_Car_Rent.Models.DTOs;
 using MAYAS_Car_Rent.Models.Interface;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 using System;
 using System.Collections.Generic;
@@ -65,6 +66,19 @@ namespace MAYAS_Car_Rent.Models.Service
                 }
             }
             return null;
+        }
+
+        public async Task<bool> ChangePassword(string userName,string oldPass , string newPass , string confirmPass)
+        {
+            var getUser = await _userManager.FindByNameAsync(userName);           
+
+            if (getUser.PasswordHash == oldPass && newPass == confirmPass)
+            {
+                await _userManager.ChangePasswordAsync(getUser, oldPass, newPass);
+                return true;
+            }
+
+            return false;
         }
 
 

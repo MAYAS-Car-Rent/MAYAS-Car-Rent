@@ -40,11 +40,11 @@ namespace MAYAS_Car_Rent.Controllers
             }
         }
         [HttpPost("Login")]
-        public async Task<ActionResult<UserDTO>> LogIn([FromBody] RegisterUserDTO userDto)
+        public async Task<ActionResult<UserDTO>> LogIn(string userName , string password)
         {
             try
             {
-                var result = await _userService.Authenticate(userDto.Username, userDto.Password);
+                var result = await _userService.Authenticate(userName, password);
                 if (result == null)
                 {
                     return BadRequest("User not found or password is wrong");
@@ -54,7 +54,24 @@ namespace MAYAS_Car_Rent.Controllers
             {
                 return BadRequest(e.Message);
             }
-            return Ok(userDto);
+            return Ok("Login succeeded");
+        }
+        [HttpPut("ChangePassword")]
+        public async Task<ActionResult> ChangePassword(string userName , string oldPass , string newPass , string confirmPass)
+        {
+            try
+            {
+                var result = await _userService.ChangePassword(userName, oldPass , newPass, confirmPass);
+                if (result)
+                {
+                    return Ok("Password change succesfully");
+                }
+                return Ok("Your old password OR confirm password is incorrect!");
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
         }
     }
 }
