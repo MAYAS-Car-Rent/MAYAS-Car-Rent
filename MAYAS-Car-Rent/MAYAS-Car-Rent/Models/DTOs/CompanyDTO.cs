@@ -11,6 +11,11 @@ namespace MAYAS_Car_Rent.Models.DTOs
         public int Id { get; set; }
         [Required]
         public string UserName { get; set; }
+
+        public string Email { get; set; }
+
+        public string Password { get; set; }
+
         [Required]
         public string Address { get; set; }
         [Required]
@@ -19,6 +24,8 @@ namespace MAYAS_Car_Rent.Models.DTOs
         public string ProfilePicture { get; set; }
 
         public double Rate { get; set; }
+
+        public int RateCount { get; set; }
 
         public List<CarDTO> Cars { get; set; }
 

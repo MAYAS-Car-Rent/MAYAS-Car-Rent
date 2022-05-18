@@ -211,6 +211,8 @@ namespace MAYAS_Car_Rent.Models.Service
             await _context.SaveChangesAsync();
         }
 
+        // Done by Ola, AbdUlrahman
+        // return list of Companies their names contain's "term"
         public async Task<List<CompanyDTO>> SearchByName(string term)
         {
             var result = _context.Companies.Select(C => new CompanyDTO
@@ -252,7 +254,26 @@ namespace MAYAS_Car_Rent.Models.Service
             }).Where(x => x.Address.Contains(address)).ToListAsync();
         }
 
-
+        // Done by AbdUlrahman
+        // Update Company Rate by rating from Coustmer
+        public async Task<Company> UpdateRate(Company company, int rate)
+        {
+            Company updatedCompany = new Company
+            {
+                Id = company.Id,
+                UserName = company.UserName,
+                Address = company.Address,
+                PhoneNumber = company.PhoneNumber,
+                Email = company.Email,
+                Password = company.Password,
+                ProfilePicture = company.ProfilePicture,
+                RateCount = company.RateCount,
+                Rate = (company.Rate + rate)/(company.RateCount + 1),
+            };
+            _context.Entry(updatedCompany).State = EntityState.Modified;
+            await _context.SaveChangesAsync();
+            return company;
+        }
 
     }
 }

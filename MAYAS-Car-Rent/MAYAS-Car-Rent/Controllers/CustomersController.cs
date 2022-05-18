@@ -17,10 +17,11 @@ namespace MAYAS_Car_Rent.Controllers
     public class customersController : ControllerBase
     {
         private readonly ICustomer _customer;
-
-        public customersController(ICustomer customer)
+        private readonly ICompany _company;
+        public customersController(ICustomer customer, ICompany company)
         {
             _customer = customer;
+            _company = company;
         }
 
         // GET: api/customers
@@ -72,6 +73,20 @@ namespace MAYAS_Car_Rent.Controllers
             await _customer.Delete(id);
 
             return NoContent();
+        }
+
+        // Done by AbdUlrahman
+        // Reciving feedback from Coustmers by giving a Rate for companies.
+        // PUT: api/customers/rating/{rate}
+        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
+        [HttpPut("rating/{rate}")]
+        public async Task<IActionResult> PutRatingForCompanies(Company company, int rate)
+        {
+            if (rate > 5 || rate < 0)
+                return BadRequest("Rating is from 1 to 5");
+
+            var modifiedRate = await _company.UpdateRate(company, rate);
+            return Ok(modifiedRate);
         }
     }
 }

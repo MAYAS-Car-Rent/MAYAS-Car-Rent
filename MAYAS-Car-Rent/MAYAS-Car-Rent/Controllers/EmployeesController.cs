@@ -23,6 +23,7 @@ namespace MAYAS_Car_Rent.Controller
             _employee = employee;
         }
 
+        // Get a List of Employees to the controller
         // GET: api/Employees/
         [HttpGet]
         public async Task<ActionResult<IEnumerable<EmployeeDTO>>> GetEmployees()
@@ -31,6 +32,7 @@ namespace MAYAS_Car_Rent.Controller
             return Ok(employees);
         }
 
+        // Get one Employee by Id to the controllera
         // GET: api/Employees/5
         [HttpGet("{id}")]
         public async Task<ActionResult<EmployeeDTO>> GetEmployee(int id)
@@ -39,6 +41,7 @@ namespace MAYAS_Car_Rent.Controller
             return Ok(employee);
         }
 
+        // Update an existed Employee by Id with data from  POST body.
         // PUT: api/Employees/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
@@ -54,6 +57,7 @@ namespace MAYAS_Car_Rent.Controller
             return Ok(updatedEmployee);
         }
 
+        // Create a new Employee in the DataBase with data from POST body
         // POST: api/Employees
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
@@ -62,6 +66,7 @@ namespace MAYAS_Car_Rent.Controller
             return await _employee.CreateEmployee(employee);
         }
 
+        // Delete an existed Employee by Id
         // DELETE: api/Employees/5
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteEmployee(int id)
@@ -70,11 +75,13 @@ namespace MAYAS_Car_Rent.Controller
             return NoContent();
         }
 
-        // GET: api/Employees/search/term
-        [HttpGet("{search}/{term}")]
-        public async Task<ActionResult<EmployeeDTO>> GetEmployeeByName(string term)
+        // Done by AbdUlrahman
+        // Get list of Employees their names contain's "name"
+        // GET: api/Employees/search/name
+        [HttpGet("search/{name}")]
+        public async Task<ActionResult<EmployeeDTO>> GetEmployeeByName(string name)
         {
-            var employee = await _employee.SearchByName(term);
+            var employee = await _employee.SearchByName(name);
             return Ok(employee);
         }
     }
