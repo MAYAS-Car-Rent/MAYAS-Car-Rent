@@ -235,7 +235,7 @@ namespace MAYAS_Car_Rent.Models.Service
         // logic to Search company By Address
         public async Task<List<CompanyDTO>> SearchByAddress(string address) // sultan 
         {
-            return await _context.Companies.Select(company => new CompanyDTO
+             return await _context.Companies.Select(company => new CompanyDTO
             { 
                 UserName = company.UserName,
                 Address = company.Address,
@@ -252,6 +252,7 @@ namespace MAYAS_Car_Rent.Models.Service
                 }).ToList()
 
             }).Where(x => x.Address.Contains(address)).ToListAsync();
+         
         }
 
         // Done by AbdUlrahman

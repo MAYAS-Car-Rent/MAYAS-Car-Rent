@@ -9,6 +9,7 @@ using MAYAS_Car_Rent.Data;
 using MAYAS_Car_Rent.Models;
 using MAYAS_Car_Rent.Models.Interface;
 using MAYAS_Car_Rent.Models.DTOs;
+using Microsoft.AspNetCore.Authorization;
 
 namespace MAYAS_Car_Rent.Controller
 {
@@ -25,6 +26,8 @@ namespace MAYAS_Car_Rent.Controller
 
         // GET: api/Cars
         [HttpGet]
+        //[AllowAnonymous]
+        //[Authorize]
         public async Task<ActionResult<IEnumerable<CarDTO>>> GetCars() // show list of cars
         {
             return Ok(await _car.GetCars());
@@ -65,6 +68,11 @@ namespace MAYAS_Car_Rent.Controller
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteCar(int id) // Delete Car by id
         {
+            var car = await _car.GetCar(id);
+            if (car == null)
+            {
+                return NotFound();
+            }
             await _car.DeleteCar(id);
             return NoContent();
         }      

@@ -78,7 +78,8 @@ namespace MAYAS_Car_Rent
             }
 
             app.UseRouting();
-
+            app.UseAuthorization();
+            app.UseAuthentication();
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
