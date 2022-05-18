@@ -33,6 +33,7 @@ namespace MAYAS_Car_Rent.Models.Interface
         Task <List<CompanyDTO>> SearchByName(string name);
         Task<List<CompanyDTO>> SearchByAddress(string address);
 
+        public Task<Company> UpdateRate(Company company, int rate);
 
 
     }

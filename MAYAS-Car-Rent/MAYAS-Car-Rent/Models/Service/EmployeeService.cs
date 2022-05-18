@@ -19,6 +19,7 @@ namespace MAYAS_Car_Rent.Models.Service
             
         }
 
+        // Create a new Employee in the DataBase
         public async Task<Employee> CreateEmployee(Employee employee)
         {
             Employee newEmployee = new Employee()
@@ -26,6 +27,7 @@ namespace MAYAS_Car_Rent.Models.Service
                 Id = employee.Id,
                 Name = employee.Name,
                 PhoneNumber = employee.PhoneNumber,
+                ProfilePicture = employee.ProfilePicture,
                 Email = employee.Email,
                 Password = employee.Password,
                 CompanyId = employee.CompanyId
@@ -35,6 +37,7 @@ namespace MAYAS_Car_Rent.Models.Service
             return newEmployee;
         }
 
+        // return List of Employees to the controller
         public async Task<List<EmployeeDTO>> GetEmployees()
         {
             return await _context.Employees
@@ -43,17 +46,20 @@ namespace MAYAS_Car_Rent.Models.Service
                     Id = e.Id,
                     Name = e.Name,
                     PhoneNumber = e.PhoneNumber,
+                    ProfilePicture = e.ProfilePicture,
                     Email = e.Email,
                     Company = new CompanyDTO
                     {
                         UserName = e.Company.UserName,
                         PhoneNumber = e.Company.PhoneNumber,
+                        ProfilePicture = e.ProfilePicture,
                         Address = e.Company.Address
                     }
                 })
                 .ToListAsync();
         }
 
+        // return one Employee by Id to the controller
         public async Task<EmployeeDTO> GetEmployee(int id)
         {
             return await _context.Employees
@@ -63,17 +69,20 @@ namespace MAYAS_Car_Rent.Models.Service
                     Id = e.Id,
                     Name = e.Name,
                     PhoneNumber = e.PhoneNumber,
+                    ProfilePicture = e.ProfilePicture,
                     Email = e.Email,
                     Company = new CompanyDTO
                     {
                         UserName = e.Company.UserName,
                         PhoneNumber = e.Company.PhoneNumber,
+                        ProfilePicture = e.ProfilePicture,
                         Address = e.Company.Address,
                     }
                 })
                 .FirstOrDefaultAsync();
         }
 
+        // Update an existed Employee by Id with data From a POST body.
         public async Task<Employee> UpdateEmployee(int id, Employee employee)
         {
             Employee updatedEmployee = new Employee
@@ -81,6 +90,7 @@ namespace MAYAS_Car_Rent.Models.Service
                 Id = id,
                 Name = employee.Name,
                 PhoneNumber = employee.PhoneNumber,
+                ProfilePicture = employee.ProfilePicture,
                 Password = employee.Password,
                 Email = employee.Email,
                 CompanyId = employee.CompanyId
@@ -90,6 +100,7 @@ namespace MAYAS_Car_Rent.Models.Service
             return employee;
         }
 
+        // Delete an existed Employee by Id
         public async Task DeleteEmployee(int id)
         {
             Employee employee = await _context.Employees.FindAsync(id);
@@ -97,6 +108,8 @@ namespace MAYAS_Car_Rent.Models.Service
             await _context.SaveChangesAsync();
         }
 
+        // Done by Ola, AbdUlrahman
+        // return list of Employees their names contain's "term"
         public Task<List<EmployeeDTO>> SearchByName(string term)
         {
             var result = _context.Employees
@@ -105,6 +118,7 @@ namespace MAYAS_Car_Rent.Models.Service
                 {
                     Name = e.Name,
                     PhoneNumber = e.PhoneNumber,
+                    ProfilePicture = e.ProfilePicture,
                     Email = e.Email,
                     
                 })
