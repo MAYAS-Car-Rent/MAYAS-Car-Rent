@@ -168,7 +168,7 @@ namespace MAYAS_Car_Rent.Controller
         }
 
         // GET: api/Companies/Address/{Address}
-        [HttpGet("Address/{Address}")] //controler to Search company By Address by sultan
+        [HttpGet("Address/{address}")] //controler to Search company By Address by sultan
         public async Task<ActionResult<CompanyDTO>> SearchByAddress(string address)
         {
             var company = await _company.SearchByAddress(address);

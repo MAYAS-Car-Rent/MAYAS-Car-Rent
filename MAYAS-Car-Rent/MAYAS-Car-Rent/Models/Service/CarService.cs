@@ -130,7 +130,7 @@ namespace MAYAS_Car_Rent.Models.Service
 
             return result;
         }
-        public async Task<List<CarDTO>> SortYear() // sort the car by yaer ascending or descending logic by sultan
+        public async Task<List<CarDTO>> SortYear() // sort the car by yaer descending logic by sultan
         {
             var car =  await _context.Cars.Select(
 
@@ -149,7 +149,7 @@ namespace MAYAS_Car_Rent.Models.Service
               ).OrderByDescending(car => car.Year).ToListAsync();
             return car;
         }
-        public async Task<List<CarDTO>> SortByPrice(int price)
+        public async Task<List<CarDTO>> SortByPrice(int price) // sort the car by Price descending logic by sultan
         {
             var car = await _context.Cars.Select(
 
