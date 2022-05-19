@@ -157,7 +157,7 @@ namespace MAYAS_Car_Rent
             company3 = await repository.CreateCompany(company3);
             // Act
             List<CompanyDTO> resultBefore = await repository.GetCompanies();
-            await repository.DeleteCompany(3);
+            await repository.DeleteCompany(8);
             List<CompanyDTO> resultAfter = await repository.GetCompanies();
             // Assert
             Assert.Equal(6, resultAfter.Count);

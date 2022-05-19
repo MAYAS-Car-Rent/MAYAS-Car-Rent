@@ -24,7 +24,7 @@ namespace MAYASCarRentTest
             // Arrange
             var car = new Car
             {
-                Id = 1,
+                Id = 5,
                 CompanyId = 1,
                 Name = "BMW",
                 Color = "Red",
@@ -83,8 +83,8 @@ namespace MAYASCarRentTest
             CarDTO result2 = await repository.GetCar(2);
 
             // Assert
-            Assert.Equal("BMW", result1.Name);
-            Assert.Equal("Toyota", result2.Name);
+            Assert.Equal("KIA", result1.Name);
+            Assert.Equal("BMW", result2.Name);
         }
         [Fact]
         public async Task CanGetAllCars()
@@ -126,7 +126,7 @@ namespace MAYASCarRentTest
 
 
             // Assert
-            Assert.Equal(2, result.Count);
+            Assert.Equal(6, result.Count);
         }
         [Fact]
         public async Task CanDeleteAnCar()
