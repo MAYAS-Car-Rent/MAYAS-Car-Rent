@@ -66,7 +66,7 @@ namespace MAYAS_Car_Rent.Controllers
                 {
                     return Ok("Password change succesfully");
                 }
-                return Ok("Your old password OR confirm password is incorrect!");
+                return BadRequest("Your old password OR confirm password is incorrect!");
             }
             catch (Exception e)
             {

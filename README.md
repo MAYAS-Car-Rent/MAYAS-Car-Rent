@@ -13,38 +13,48 @@ In this project, We simulated the back-end of a Car Rental system using ASP.Net 
 
 ---
 
-## Wireframes
+## [Wireframe](Assest/Wirframe.jpeg)
 
-![Home](Assest/Home-Page.jpeg)
-
-![Company](Assest/Company-Page.jpeg)
-
-![Car](Assest/Car-Page.jpeg)
-
-![Employee](Assest/Employee-Page.jpeg)
 
 ---
 
 ## User Stories
-![Admin](Assest/Admin-Card1.jpeg)
 
-![Admin](Assest/Admin-Card2.jpeg)
+**[Admin 1](Assest/Admin-Card1.jpeg)**
 
-![Employee](Assest/Employee-Card.jpeg)
+**[Admin 2](Assest/Admin-Card2.jpeg)**
 
-![User](Assest/User-Card.jpeg)
+**[Employee](Assest/Employee-Card.jpeg)**
 
----
-
-## Domain Modeling
-
-![Domain-Modeling](Assest/Domain-Model.jpeg)
+**[User](Assest/User-Card.jpeg)**
 
 ---
 
-## Database Schema Diagram
+## [Domain Modeling](Assest/Domain-Model.jpeg)
 
-![ERD](Assest/ERD.jpeg)
+---
+
+## [Database Schema Diagram](Assest/ERD.jpeg)
+
+* **Company**
+Companies is a class which holds the properties UserName, ProfilePicture, Email, Password, PhoneNumber,CommercialRegistrationNumber, Rate, RateCount and Address.
+
+* **Car** 
+Has Foreign Key CompanyId, It has the properties of Name, ImageUrl, Color, Year, Model, PlateNumber, PricePerDay and enum for CarType.
+ 
+ * **CarType**
+ List of three car types: Micro, Sport, Van, SUV, and Luxury. Connects to Car and nothing else.
+ 
+ * **Reservation**
+ Has two Foreign Key CompanyId and CustomerId. It has the properties of PickupDate, ReturnDate, NumberOfDays, and Price. 
+ 
+ 
+ * **Customer** 
+ The simple class have properties UserName, Email, Password, Gender, PhoneNumber, NationalNumber, and Address
+ 
+ * **Employee** 
+ Another simple class has properties Name, Email, Password, ProfilePicture, and PhoneNumber and has Foreign Key CompanyId.
+
 
 ---
 
@@ -77,12 +87,12 @@ We have a table of tasks with deadline and status for each one.
 
 | Tasks | Deadline | Status | 
 |:-|:-|:-| 
-| Planning | 9/5/2022 | Complete |
-| Diagram | 10/5/2022 | Uncomplete | 
-| Entity FrameWork | 10/5/2022 | Uncomplete | 
-| Services | 11/5/2022 | Uncomplete | 
-| Controllers | 12/5/2022 | Uncomplete | 
-| Identity | 15/5/2022 | Uncomplete | 
-| Swagger | 15/5/2022 | Uncomplete | 
+| Planning | 9/5/2022 | Completeed |
+| Diagram | 10/5/2022 | Completeed | 
+| Entity FrameWork | 10/5/2022 | Completeed | 
+| Services | 11/5/2022 | Completeed | 
+| Controllers | 12/5/2022 | Completeed | 
+| Identity | 15/5/2022 | Completeed | 
+| Swagger | 15/5/2022 | Completeed | 
 
 
