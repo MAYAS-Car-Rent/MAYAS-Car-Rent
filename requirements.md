@@ -10,14 +10,14 @@ MAYAS-Car-Rent offers companies the ability to keep a car to be rented as well a
 ## IN
 - Allow an easy way to rent a car
 
-- Allows Admin to create, update, and delete a car and employee and accept or ignore reservation.
+- Allows Admin to create, update, and delete a car and employee and   accept or ignore reservation.
 
 - Allows Employee to accept or ignore reservation.
 
 - Allows customers to create, update, and delete a reservation for the car
 
 ## OUT
-- My website will never turn into an IOS or Android app.
+- Our website will never turn into an IOS or Android app.
 - Won’t manage sales
 - Will not track expenses
 
@@ -29,8 +29,11 @@ MAYAS-Car-Rent offers companies the ability to keep a car to be rented as well a
 
 ## Stretch
 
-- Able to view, update, create, and delete schedules. 
+- Ability for users to create an account using an external login provider like Facebook or google. 
 
+- Add roles for users in our project.
+
+- Add user interface and user experiance to make it useful. 
 
 ## Functional Requirements
 
@@ -47,7 +50,6 @@ There will be a controller for each entity implemented, which will take in a DTO
 
 Each controller will use dependency injection to access a service object which will perform the actual database operations, and return DTO data back to the controller. The controller will not have access to actual entity data, but will only work with DTOs.
 
-When a user signs in, they will create a token, and use that token to access the API data they have permission to access.
 
 ## Non-Functional Requirements
 
@@ -55,8 +57,7 @@ When a user signs in, they will create a token, and use that token to access the
 
     We will employ ASP.NET Core Authorization and Identity to create Jwt tokens for users when they log in, and then those users will employ their token to gain access to the functionalities they have access to.
 
-    Users can create an account with the login information stored in Identity or they can use an external login provider. Supported external login providers include Facebook, Google, Microsoft Account, and Twitter.
-
+    Users can create an account with the login information stored in database. 
 - **Testability** 
 
     We will employ xUnit to perform unit tests, and build the project using TDD.
